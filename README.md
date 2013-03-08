@@ -10,6 +10,10 @@ All information about the machine, build instructions and such will be published
 [http://kuehlingkuehling.de](http://kuehlingkuehling.de)
 as soon as they are finished.
 
+## Current Version
+
+1.0-dev
+
 ## License
 
 This OpenSCAD code and its rendered 3D models are licensed unter the Creative Commons Attribution-ShareAlike license (CC BY-SA 3.0).
