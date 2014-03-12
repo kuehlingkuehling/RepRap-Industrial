@@ -12,10 +12,9 @@ Designed and developed by:
 	Jonas Kühling <mail@jonaskuehling.de>
 	Simon Kühling <mail@simonkuehling.de>
 
-Licensed under:
-	Creative Commons Attribution-ShareAlike
-	CC BY-SA 3.0
-	http://creativecommons.org/licenses/by-sa/3.0/
+License:
+	Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+	https://creativecommons.org/licenses/by-sa/4.0/
 
 *******************************************************************/
 
@@ -147,7 +146,12 @@ module nut_trap(nut_wrench_size,trap_height,vertical=0, clearance=0.2,center=tru
 		cylinder(h = trap_height, r = radius, center=center, $fn = 6);
 }
 
-//nut_trap(5,5,0);
+module nut_trap_square(nut_wrench_size,trap_height,vertical=0, clearance=0.2,center=true){		// M3 wrench size = 5.5
+	rotate([0,vertical*90,0])
+		cube([nut_wrench_size+2*clearance,nut_wrench_size+2*clearance,trap_height],center=center);
+}
+
+//nut_trap_square(5,5,0);
 
 module nut_slot(nut_wrench_size,nut_height, nut_elevation,vertical=0, clearance=0.2){		// M3 wrench size = 5.5
 	radius = cornerdiameter(nut_wrench_size+2*clearance) /2;
@@ -159,7 +163,17 @@ module nut_slot(nut_wrench_size,nut_height, nut_elevation,vertical=0, clearance=
 	}
 }
 
-//nut_slot(5.5,3,4,1);
+module nut_slot_square(nut_wrench_size,nut_height, nut_elevation,vertical=0, clearance=0.2){		// M3 wrench size = 5.5
+	slot_height = nut_height+2*clearance;
+	slot_width = nut_wrench_size+2*clearance;
+	rotate([0,vertical*270,0]){
+		cube([slot_width,slot_width,slot_height],center=true);
+		translate([0,-slot_width/2,-slot_height/2]) cube([nut_elevation+1,slot_width,slot_height]);
+	}
+}
+
+//nut_slot_square(5.5,3,4,1);
 
 function cornerdiameter(wrench_size) =  2* ((wrench_size)/2)/ cos(180/6);
 function cornerdiameter_8(wrench_size) =  2* ((wrench_size)/2)/ cos(180/8);
+function cornerdiameter_4(wrench_size) =  2* ((wrench_size)/2)/ cos(180/4);

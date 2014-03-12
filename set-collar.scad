@@ -12,10 +12,9 @@ Designed and developed by:
 	Jonas Kühling <mail@jonaskuehling.de>
 	Simon Kühling <mail@simonkuehling.de>
 
-Licensed under:
-	Creative Commons Attribution-ShareAlike
-	CC BY-SA 3.0
-	http://creativecommons.org/licenses/by-sa/3.0/
+License:
+	Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+	https://creativecommons.org/licenses/by-sa/4.0/
 
 *******************************************************************/
 
@@ -23,7 +22,9 @@ include <configuration.scad>
 
 
 
+// RENDERING
 set_collar();
+
 
 
 
@@ -54,8 +55,8 @@ module set_collar(){
 					teardrop(set_collar_screw_washer_dia/2+clearance,set_collar_body_dia/2+1);
 			translate([0,-(set_collar_body_dia/2+1)/2-wall_thin/2-wall,0])
 				rotate([90,0,0])
-					rotate([0,0,30])
-						nut_trap(set_collar_screw_nut_wrench,set_collar_body_dia/2+1);
+					rotate([0,0,45])
+						nut_trap_square(set_collar_screw_nut_wrench,set_collar_body_dia/2+1);
 		}
 	
 	}

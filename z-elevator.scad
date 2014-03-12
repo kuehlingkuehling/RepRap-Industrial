@@ -12,20 +12,23 @@ Designed and developed by:
 	Jonas Kühling <mail@jonaskuehling.de>
 	Simon Kühling <mail@simonkuehling.de>
 
-Licensed under:
-	Creative Commons Attribution-ShareAlike
-	CC BY-SA 3.0
-	http://creativecommons.org/licenses/by-sa/3.0/
+License:
+	Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+	https://creativecommons.org/licenses/by-sa/4.0/
 
 *******************************************************************/
 
 include <configuration.scad>
 
-echo(cornerdiameter(z_spindle_nut_wrench+2*clearance)/2);
 
-z_elevator_body_height = 2*linear_bearing_length+2*clearance+linear_bearing_dist_min;
 
+
+
+// RENDERING
 z_elevator();
+
+
+
 
 
 module z_elevator(){
@@ -33,144 +36,167 @@ module z_elevator(){
 
 		// main body
 		union(){
+*			hull(){
+				for(h=[0,1])
+					mirror([h,0,0]){
+						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,z_elevator_body_length/2-wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,-z_elevator_body_length/2+wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+						translate([z_elevator_body_width/2-wall,linear_bearing_dia/2+clearance+wall-wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+						translate([z_elevator_body_width/2-wall,-linear_bearing_dia/2-clearance-wall+wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+					}
+			}
 
-			// bearing clamp body
-			for(i=[0,1])
-				mirror([i*1,0,0])
-					translate([z_rod_dist/2,0,0])
-						hull(){
-							translate([linear_bearing_dia/2+clearance,-linear_bearing_dia/2-clearance,0])
-								cylinder(r=wall,h=z_elevator_body_height);
-							translate([linear_bearing_dia/2+clearance,linear_bearing_dia/2+clearance,0])
-								cube([wall,wall,z_elevator_body_height]);
-							translate([-linear_bearing_dia/2-clearance-wall-z_bearing_clamp_screw_dia-2*clearance-frame_washer_wall+wall,linear_bearing_dia/2+clearance,0])
-								cylinder(r=wall,h=z_elevator_body_height);
-							translate([-linear_bearing_dia/2-clearance-wall-z_bearing_clamp_screw_dia-2*clearance-frame_washer_wall,-linear_bearing_dia/2-clearance-wall,0])
-								cube([wall,wall,z_elevator_body_height]);
+			for(h=[0,1])
+				mirror([h,0,0])
+					hull(){
+						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall+wall,linear_bearing_dia/2+clearance+wall-wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall+wall,-linear_bearing_dia/2-clearance-wall+wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+						translate([z_elevator_body_width/2-wall,linear_bearing_dia/2+clearance+wall-wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+						translate([z_elevator_body_width/2-wall,-linear_bearing_dia/2-clearance-wall+wall,0])
+							cylinder(r=wall,h=z_elevator_body_height);
+					}
+			difference(){
+				hull(){
+					for(h=[0,1])
+						mirror([h,0,0]){
+							translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,z_elevator_body_length/2-wall,0])
+								cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+							translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,-z_elevator_body_length/2+wall,0])
+								cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+							translate([z_elevator_body_width/2-wall,linear_bearing_dia/2+clearance+wall-wall,0])
+								cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+							translate([z_elevator_body_width/2-wall,-linear_bearing_dia/2-clearance-wall+wall,0])
+								cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
 						}
-
-			// spindle nut trap body
-			cylinder(r=cornerdiameter(z_spindle_nut_wrench+2*clearance+2*wall)/2,h=z_elevator_body_height,$fn=6);
-
-			// bearing clamp to spindle nut trap wall
-			translate([-z_rod_dist/2,0,0])
-				cube([z_rod_dist,wall,z_elevator_body_height]);
-
-			// platform frame holders body
-			for(i=[0,1])
-				mirror([i*1,0,0])
-					translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall,linear_bearing_dia/2+clearance+wall,0])
-						rotate([0,-90,0])
-							linear_extrude(height=2*wall+2*clearance+frame_width+wall)
-								polygon(points=[[0,-1],[z_elevator_body_height,-1],[z_elevator_body_height,0],[wall,z_elevator_body_height-wall],[0,z_elevator_body_height-wall]]);
-
-			// material for inner rounded corners
-			for(j=[0,1])
-				mirror([j*1,0,0]){
-					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall-2*clearance-z_bearing_clamp_screw_dia-wall-wall,wall,0])
-						cube([wall,wall,z_elevator_body_height]);
 				}
+				for(h=[0,1])
+					mirror([h,0,0])
+						translate([-1,-(z_elevator_body_length-2*wall)/2,z_spindle_nut_height+clearance+wall])
+							cube([(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-clearance-wall)+1,z_elevator_body_length-2*wall,z_elevator_body_height]);
+			}
+
+			intersection(){
+				hull(){
+					hull(){
+						for(h=[0,1])
+							mirror([h,0,0]){
+								translate([z_elevator_body_width/2-wall,linear_bearing_dia/2+clearance+wall-wall,0])
+									cylinder(r=wall,h=z_elevator_body_height);
+								translate([z_elevator_body_width/2-wall,-linear_bearing_dia/2-clearance-wall+wall,0])
+									cylinder(r=wall,h=z_elevator_body_height);
+							}
+					}
+					hull(){
+						for(h=[0,1])
+							mirror([h,0,0]){
+								translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,z_elevator_body_length/2-wall,0])
+									cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+								translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,-z_elevator_body_length/2+wall,0])
+									cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+								translate([z_elevator_body_width/2-wall,linear_bearing_dia/2+clearance+wall-wall,0])
+									cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+								translate([z_elevator_body_width/2-wall,-linear_bearing_dia/2-clearance-wall+wall,0])
+									cylinder(r=wall,h=wall+clearance+frame_width+clearance+wall);
+							}
+					}
+				}
+				union(){
+					for(h=[0,1])
+						mirror([h,0,0]){
+							translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin,-z_elevator_body_length/2-1,-1])
+								cube([z_elevator_body_width/2,z_elevator_body_length+2,z_elevator_body_height+2]);
+							translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-clearance-wall,-z_elevator_body_length/2-1,-1])
+								cube([wall,z_elevator_body_length+2,z_elevator_body_height+2]);
+						}
+					for(h=[0,1])
+						mirror([0,h,0])
+							translate([-z_elevator_body_width/2-1,linear_bearing_dia/2+clearance,-1])
+								cube([z_elevator_body_width+2,wall,z_elevator_body_height+2]);
+				}
+			}
+
+
 
 			// z endstop mount
-			translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall,0,0])
-				rotate([0,0,90])
-					rotate([90,0,0])
-						endstop_mount(teardrop=1,teardrop_angle=90,top=0);
+			difference(){
+				translate([-z_elevator_body_width/2,0,-(wall+clearance+endstop_screw_dia/2)+endstop_hole_sensor_dist])
+					rotate([0,-90,0])
+						rotate([0,0,-90])
+							endstop_mount(teardrop_angle=90,top=0);
+				translate([0,0,-z_elevator_body_height/2])
+					cube([2*z_elevator_body_width,z_elevator_body_length+2,z_elevator_body_height],center=true);
+			}
 		}
 
-		// bearing clamps
+		// spindle nut mount
+		difference(){
+			translate([0,0,-1])
+				cylinder(r=z_spindle_nut_dia/2+clearance,h=z_elevator_body_height+2);
+			for(n=[0,1])
+				mirror([0,n,0])
+					translate([-z_elevator_body_width/2,z_spindle_dia/2+wall_thin,z_spindle_nut_height+clearance])
+						cube([z_elevator_body_width,z_elevator_body_length/2,z_elevator_body_height]);
+		}
+		translate([0,0,z_spindle_nut_height/2])
+			rotate([0,0,90])
+				teardrop(z_spindle_nut_screw_dia/2+clearance,z_elevator_body_length+2);
+		for(m=[1,-1])
+			translate([0,m*(z_spindle_nut_dia/2+wall_thin+clearance+z_spindle_nut_screw_nut_height/2),z_spindle_nut_height/2])
+				rotate([0,180,0])
+					rotate([0,0,90])
+						nut_slot_square(z_spindle_nut_screw_nut_wrench,z_spindle_nut_screw_nut_height,z_spindle_nut_height/2,vertical=1);
+
 		for(i=[0,1])
-			mirror([i*1,0,0])
-				translate([z_rod_dist/2,0,0])
-					translate([0,0,-1]){
+			mirror([i,0,0]){
+
+				// linear bearing mounts
+				difference(){
+					translate([z_rod_dist/2,0,-1])
 						cylinder(r=linear_bearing_dia/2+clearance,h=z_elevator_body_height+2);
-						translate([-(linear_bearing_dia/2+clearance+wall+z_bearing_clamp_screw_dia+2*clearance+wall+1),-wall_thin,0])
-						cube([linear_bearing_dia/2+clearance+wall+z_bearing_clamp_screw_dia+2*clearance+wall+1,wall_thin,z_elevator_body_height+2]);
-					}
 
-		// bearing clamp screw holes
-		for(i=[0,1])
-			mirror([i*1,0,0])
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall-clearance-z_bearing_clamp_screw_dia/2,0,z_elevator_body_height-linear_bearing_length/2]){
-					rotate([0,0,90])
-						teardrop(z_bearing_clamp_screw_dia/2,wall+clearance+linear_bearing_dia+clearance+wall+2);
-					translate([0,linear_bearing_dia/2+clearance-clearance-z_bearing_clamp_nut_height/2,0])
-						rotate([0,-90,0])
-							rotate([0,0,90])
-								nut_slot(z_bearing_clamp_nut_wrench,z_bearing_clamp_nut_height,wall+z_bearing_clamp_screw_dia/2+1,vertical=1);
+					// linear bearing push in stop
+					translate([0,linear_bearing_dia/2+clearance-wall_thin,z_elevator_body_height/2-linear_bearing_dist_min/2+clearance])
+						cube([z_elevator_body_width/2,2*wall_thin,linear_bearing_dist_min-2*clearance]);
 				}
-		for(i=[0,1])
-			mirror([i*1,0,0])
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall-clearance-z_bearing_clamp_screw_dia/2,0,linear_bearing_length/2]){
+				hull(){
+					translate([linear_bearing_dia/2+z_rod_dist/2,0,z_elevator_body_height-linear_bearing_length+2*wall])
+							teardrop(wall/2,linear_bearing_dia);
+					translate([linear_bearing_dia/2+z_rod_dist/2,0,linear_bearing_length-2*wall])
+							teardrop(wall/2,linear_bearing_dia);
+				}
+				translate([(linear_bearing_dia+clearance+wall+1)/2+z_rod_dist/2-linear_bearing_dia/2,-linear_bearing_groove_dia/2-linear_bearing_groove_width/2,z_elevator_body_height-linear_bearing_length+linear_bearing_groove_pos+linear_bearing_groove_width/2])
+						teardrop(linear_bearing_groove_width/2+clearance,linear_bearing_dia+clearance+wall+1);
+				translate([(linear_bearing_dia+clearance+wall+1)/2+z_rod_dist/2-linear_bearing_dia/2,-linear_bearing_groove_dia/2-linear_bearing_groove_width/2,linear_bearing_length-linear_bearing_groove_pos-linear_bearing_groove_width/2])
+						teardrop(linear_bearing_groove_width/2+clearance,linear_bearing_dia+clearance+wall+1);
+
+				// platform frame mount
+				translate([-frame_width_small-2*clearance+z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin,-(z_elevator_body_length-2*wall+1)+z_elevator_body_length/2-2*wall,wall+clearance])
+					cube([frame_width_small+2*clearance,z_elevator_body_length-2*wall+1,frame_width+2*clearance]);
+				difference(){
+					union(){
+						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,-(z_elevator_body_length/2-wall-clearance-frame_screw_washer_dia/2),-1])
+							cylinder(r=frame_screw_dia/2+clearance,h=z_elevator_body_height+2);
+						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,-(z_elevator_body_length/2-wall-clearance-frame_screw_washer_dia/2),wall+clearance+frame_width+clearance+wall])
+							cylinder(r=frame_screw_washer_dia/2+clearance,h=z_elevator_body_height);
+					}
+					translate([0,0,layer_height/2+wall+clearance+frame_width+clearance])
+						cube([z_elevator_body_width+2,z_elevator_body_length+2,layer_height],center=true);
+				}
+				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,0,wall+clearance+frame_width/2])
 					rotate([0,0,90])
-						teardrop(z_bearing_clamp_screw_dia/2,wall+clearance+linear_bearing_dia+clearance+wall+2);
-					translate([0,linear_bearing_dia/2+clearance-clearance-z_bearing_clamp_nut_height/2,0])
-						rotate([0,-90,0])
-							rotate([0,0,90])
-								nut_slot(z_bearing_clamp_nut_wrench,z_bearing_clamp_nut_height,wall+z_bearing_clamp_screw_dia/2+1,vertical=1);
-				}					
-
-		// spindle nut trap
-		translate([0,0,-1])
-			cylinder(r=cornerdiameter(z_spindle_nut_wrench+2*clearance)/2,h=z_elevator_body_height+2,$fn=6);
-
-/*
-		translate([0,0,-1])
-%			cylinder(r=cornerdiameter(z_spindle_nut_wrench+2*clearance)/2,h=z_elevator_body_height+2,$fn=6);
-*/
-
-		// platform frame holders
-		for(i=[0,1])
-			mirror([i*1,0,0]){
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall-wall-2*clearance-frame_width,linear_bearing_dia/2+clearance+wall,wall])
-					cube([frame_width+2*clearance,z_elevator_body_height,z_elevator_body_height]);
-
-				// leave edge material for inner round corner
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall-2*wall-2*clearance-frame_width-wall-1,linear_bearing_dia/2+clearance+wall+wall,-1])
-					cube([wall+1,z_elevator_body_height,z_elevator_body_height+2]);
-			}
-
-		// inner round corners
-		for(i=[0,1])
-			mirror([i*1,0,0]){
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall-2*wall-2*clearance-frame_width-wall,linear_bearing_dia/2+clearance+wall+wall,-1])
-					cylinder(r=wall,h=z_elevator_body_height+2);
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall-2*clearance-z_bearing_clamp_screw_dia-wall-wall,wall+wall,-1])
-					cylinder(r=wall,h=z_elevator_body_height+2);
-
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall-2*wall-2*clearance-frame_width,linear_bearing_dia/2+clearance+wall+z_elevator_body_height-wall,0])
-					rotate([0,0,-90])
-						roundcorner(wall,z_elevator_body_height);
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall,linear_bearing_dia/2+clearance+wall+z_elevator_body_height-wall,0])
-					rotate([0,0,-180])
-						roundcorner(wall,z_elevator_body_height);
-			}
-
-		// platform frame mount screw holes
-		for(i=[0,1])
-			mirror([i*1,0,0]){
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall-wall-clearance-frame_width/2,linear_bearing_dia/2+clearance+wall+max((frame_washer_wall+clearance+frame_screw_dia/2),(frame_groove_nut_length/2)),-1])
-					cylinder(r=frame_screw_dia/2,h=wall+2);
-				translate([z_rod_dist/2+linear_bearing_dia/2+clearance+wall-wall-clearance-frame_width/2,linear_bearing_dia/2+clearance+wall+z_elevator_body_height-wall-frame_washer_wall-clearance-frame_screw_dia/2,-1])
-					cylinder(r=frame_screw_dia/2,h=wall+2);
+						teardrop(frame_center_screw_dia/2+clearance,z_elevator_body_length+2);
+				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,z_elevator_body_length-wall,wall+clearance+frame_width/2])
+					rotate([0,0,90])
+						teardrop(frame_center_screw_washer_dia/2+clearance,z_elevator_body_length);
 			}
 	}
-
-	// spindle nut support
-	for(k=[0:2])
-		rotate([0,0,k*60])
-			translate([0,0,z_spindle_nut_height+clearance+k*layer_height])
-				difference(){
-						cylinder(r=cornerdiameter(z_spindle_nut_wrench+2*clearance)/2,h=wall-k*layer_height,$fn=6);
-						translate([-(cornerdiameter(z_spindle_nut_wrench+2*clearance)+2)/2,-(z_spindle_dia+2*wall_thin)/2,-1])
-							cube([cornerdiameter(z_spindle_nut_wrench+2*clearance)+2,z_spindle_dia+2*wall_thin,wall-k*layer_height+2]);
-				}
-
-	// linear bearing push in stop
-	for(i=[0,1])
-		mirror([i*1,0,0])
-			translate([z_rod_dist/2-linear_bearing_dia/2-clearance,linear_bearing_dia/2+clearance-wall_thin,z_elevator_body_height/2-linear_bearing_dist_min/2])
-				cube([linear_bearing_dia+2*clearance,2*wall_thin,linear_bearing_dist_min]);
 }
 
 
@@ -181,17 +207,66 @@ module endstop_mount(teardrop=1,teardrop_angle=-90,top=1){
 
 		// main body
 		union(){
-			translate([-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0,-wall])
-				cube([endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall,2*wall+2*clearance+endstop_screw_dia,endstop_screw_nut_height+2*clearance+2*wall]);
-
-			translate([0,0,-wall])
-				rotate([-90,0,0])
-					linear_extrude(height=2*wall+2*clearance+endstop_screw_dia)
-						polygon(points=[[-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0],[-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2+2*wall,2*wall],[(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2-2*wall,2*wall],[(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0]]);
+			hull(){
+				translate([-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0,endstop_screw_nut_height+2*clearance+2*wall-wall-wall])
+					cube([endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall,2*wall+2*clearance+endstop_screw_dia,wall]);
+				translate([endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance,0,0])
+					rotate([-90,0,0])
+						cylinder(r=wall,h=2*wall+2*clearance+endstop_screw_dia);
+				translate([-(endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance),0,0])
+					rotate([-90,0,0])
+						cylinder(r=wall,h=2*wall+2*clearance+endstop_screw_dia);
+			}
+			if(top==1)
+				hull(){
+					translate([endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance,0,0])
+						rotate([-90,0,0])
+							cylinder(r=wall,h=2*wall+2*clearance+endstop_screw_dia);
+					translate([-(endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance),0,0])
+						rotate([-90,0,0])
+							cylinder(r=wall,h=2*wall+2*clearance+endstop_screw_dia);
+					translate([0,0,-(endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance)])
+						rotate([-90,0,0])
+							cylinder(r=wall,h=2*wall+2*clearance+endstop_screw_dia);
+				}
+			if(top==0)
+				intersection(){
+					hull(){
+						translate([-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0,endstop_screw_nut_height+2*clearance])
+							rotate([0,90,0])
+								cylinder(r=wall,h=endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall);
+						translate([-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,-(endstop_screw_nut_height+2*clearance+wall)-wall,(endstop_screw_nut_height+2*clearance)-(endstop_screw_nut_height+2*clearance+wall)-wall])
+							rotate([0,90,0])
+								cylinder(r=wall,h=endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall);
+						translate([-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0,(endstop_screw_nut_height+2*clearance)-(endstop_screw_nut_height+2*clearance+wall)-wall])
+							rotate([0,90,0])
+								cylinder(r=wall,h=endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall);
+					}
+					translate([0,-(2*wall+2*clearance+endstop_screw_dia),0])
+						hull(){
+							translate([-(endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall)/2,0,endstop_screw_nut_height+2*clearance+2*wall-wall-wall])
+								cube([endstop_hole_dist+endstop_screw_nut_wrench+2*clearance+2*wall,2*(2*wall+2*clearance+endstop_screw_dia),wall]);
+							translate([endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance,0,0])
+								rotate([-90,0,0])
+									cylinder(r=wall,h=2*(2*wall+2*clearance+endstop_screw_dia));
+							translate([-(endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance),0,0])
+								rotate([-90,0,0])
+									cylinder(r=wall,h=2*(2*wall+2*clearance+endstop_screw_dia));
+							translate([endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance,0,0])
+								rotate([-90,0,0])
+									cylinder(r=wall,h=2*(2*wall+2*clearance+endstop_screw_dia));
+							translate([-(endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance),0,0])
+								rotate([-90,0,0])
+									cylinder(r=wall,h=2*(2*wall+2*clearance+endstop_screw_dia));
+							translate([0,0,-(endstop_hole_dist/2+endstop_screw_nut_wrench/2+clearance)])
+								rotate([-90,0,0])
+									cylinder(r=wall,h=2*(2*wall+2*clearance+endstop_screw_dia));
+						}
+				}
 		}
 		for(k=[-1,1])
-			translate([-(endstop_screw_nut_wrench+2*clearance)/2+k*endstop_hole_dist/2,-1,0])
-				cube([endstop_screw_nut_wrench+2*clearance,2*wall+2*clearance+endstop_screw_dia+2,endstop_screw_nut_height+2*clearance]);
+			translate([-(endstop_screw_nut_wrench+2*clearance)/2+k*endstop_hole_dist/2,-1-(2*wall+2*clearance+endstop_screw_dia+2),0])
+				cube([endstop_screw_nut_wrench+2*clearance,2*(2*wall+2*clearance+endstop_screw_dia+2),endstop_screw_nut_height+2*clearance]);
 		if(teardrop==1)
 			for(j=[-1,1])
 				translate([j*endstop_hole_dist/2,(2*wall+2*clearance+endstop_screw_dia)/2,(endstop_screw_nut_height+2*clearance+wall+1)/2])
@@ -209,7 +284,6 @@ module endstop_mount(teardrop=1,teardrop_angle=-90,top=1){
 		for(j=[-1,1])
 			translate([j*endstop_hole_dist/2,(2*wall+2*clearance+endstop_screw_dia)/2,endstop_screw_nut_height+2*clearance])
 				cylinder(r=endstop_screw_dia/2+clearance+wall_thin,h=layer_height);
-
 }
 
 

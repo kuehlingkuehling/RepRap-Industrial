@@ -12,9 +12,9 @@ as soon as they are finished.
 
 ## Current Version
 
-1.0-dev
+1.0.0
 
 ## License
 
-This OpenSCAD code and its rendered 3D models are licensed unter the Creative Commons Attribution-ShareAlike license (CC BY-SA 3.0).
-http://creativecommons.org/licenses/by-sa/3.0/
+This OpenSCAD code and its rendered 3D models are licensed unter the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+[https://creativecommons.org/licenses/by-sa/4.0/](https://creativecommons.org/licenses/by-sa/4.0/)
