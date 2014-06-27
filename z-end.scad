@@ -47,7 +47,7 @@ module z_end(top=0){
 							cube([wall,wall,z_end_body_height]);
 					}
 			}
-			cylinder(r=set_collar_body_dia/2+wall+wall,h=z_end_body_height);
+			cylinder(r=set_collar_body_dia/2+wall_thin+wall,h=z_end_body_height);
 
 			// endstop magnet countersink extension
 			if(top==0)
@@ -112,7 +112,7 @@ module z_end(top=0){
 			cylinder(r=bearing_dia/2+clearance-wall,h=z_end_body_height+2);
 
 		// spindle bearing trap
-		translate([0,0,z_end_body_height-set_collar_body_height-wall_thin-clearance-bearing_width-clearance])
+		translate([0,0,z_end_body_height-set_collar_body_height-bearing_width-clearance])
 			cylinder(r=bearing_dia/2+clearance,h=z_end_body_height);
 		if(top==0)
 			hull(){
@@ -129,9 +129,9 @@ module z_end(top=0){
 					cylinder(r=wall/2,h=z_end_body_height+2);
 
 		// set collar clearance and set collar screw accessability
-		translate([0,0,z_end_body_height-set_collar_body_height-wall_thin-clearance])
-			cylinder(r=set_collar_body_dia/2+wall,h=z_end_body_height);
-		translate([z_spindle_dia/2+clearance+wall+clearance+set_collar_screw_dia/2,-z_elevator_body_length/2,z_end_body_height-set_collar_body_height/2])
+		translate([0,0,z_end_body_height-set_collar_body_height])
+			cylinder(r=set_collar_body_dia/2+wall_thin,h=z_end_body_height);
+		translate([set_collar_screw_pos_radius,-z_elevator_body_length/2,z_end_body_height-set_collar_body_height/2])
 			rotate([0,0,90])
 				teardrop(set_collar_screw_hex_wrench_dia/2+wall_thin,z_elevator_body_length);
 
