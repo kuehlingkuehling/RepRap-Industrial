@@ -25,8 +25,7 @@ include <configuration.scad>
 
 
 // RENDERING
-//rotate([90,0,0]) 
-controller_ethernet_coupling_panel();
+rotate([90,0,0]) controller_ethernet_coupling_panel();
 
 
 

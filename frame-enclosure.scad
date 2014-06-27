@@ -50,7 +50,7 @@ include <configuration.scad>
 * projection(cut=false) rotate([-90,0,0]) frame_enclosure_base_front();
 
 // BASE BACK
- projection(cut=false) rotate([-90,0,0]) frame_enclosure_base_back();
+* projection(cut=false) rotate([-90,0,0]) frame_enclosure_base_back();
 
 // BASE BOTTOM
 * projection(cut=true) translate([0,0,-1]) frame_enclosure_base_bottom();
