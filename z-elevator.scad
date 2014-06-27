@@ -172,7 +172,7 @@ module z_elevator(){
 						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,-(z_elevator_body_length/2-wall-clearance-frame_screw_washer_dia/2),wall+clearance+frame_width+clearance+wall])
 							cylinder(r=frame_screw_washer_dia/2+clearance,h=z_elevator_body_height);
 					}
-					translate([0,0,layer_height/2+wall+clearance+frame_width+clearance])
+					if(support) translate([0,0,layer_height/2+wall+clearance+frame_width+clearance])
 						cube([z_elevator_body_width+2,z_elevator_body_length+2,layer_height],center=true);
 				}
 				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,0,wall+clearance+frame_width/2])

@@ -78,7 +78,7 @@ module controller_touchscreen_housing_frame(){
 		}
 
 		// housing mount screw holes and nut traps
-		for(h=[0,1])
+		if(support) for(h=[0,1])
 			mirror([h,0,0])
 				for(v=[0,1])
 					mirror([0,v,0]){
@@ -86,6 +86,19 @@ module controller_touchscreen_housing_frame(){
 							cylinder(r=controller_touchscreen_housing_back_screw_dia/2+clearance,h=controller_touchscreen_housing_body_length);
 						translate([controller_touchscreen_housing_body_width/2-controller_touchscreen_glasssideclearance/2,controller_touchscreen_housing_body_height/4,-controller_touchscreen_housing_back_screw_nut_height-clearance-layer_height])
 							cylinder(r=controller_touchscreen_housing_back_screw_dia/2+clearance,h=controller_touchscreen_housing_body_length);
+						translate([controller_touchscreen_housing_body_width/4,controller_touchscreen_housing_body_height/2-controller_touchscreen_glasssideclearance/2,controller_touchscreen_housing_body_length+controller_touchscreen_housing_body_length/2-controller_touchscreen_housing_back_screw_nut_height-clearance])
+							nut_trap_square(controller_touchscreen_housing_back_screw_nut_wrench,controller_touchscreen_housing_body_length);
+						translate([controller_touchscreen_housing_body_width/2-controller_touchscreen_glasssideclearance/2,controller_touchscreen_housing_body_height/4,controller_touchscreen_housing_body_length+controller_touchscreen_housing_body_length/2-controller_touchscreen_housing_back_screw_nut_height-clearance])
+							nut_trap_square(controller_touchscreen_housing_back_screw_nut_wrench,controller_touchscreen_housing_body_length);
+					}
+		else for(h=[0,1])
+			mirror([h,0,0])
+				for(v=[0,1])
+					mirror([0,v,0]){
+						translate([controller_touchscreen_housing_body_width/4,controller_touchscreen_housing_body_height/2-controller_touchscreen_glasssideclearance/2,-1])
+							cylinder(r=controller_touchscreen_housing_back_screw_dia/2+clearance,h=controller_touchscreen_housing_body_length+2);
+						translate([controller_touchscreen_housing_body_width/2-controller_touchscreen_glasssideclearance/2,controller_touchscreen_housing_body_height/4,-1])
+							cylinder(r=controller_touchscreen_housing_back_screw_dia/2+clearance,h=controller_touchscreen_housing_body_length+2);
 						translate([controller_touchscreen_housing_body_width/4,controller_touchscreen_housing_body_height/2-controller_touchscreen_glasssideclearance/2,controller_touchscreen_housing_body_length+controller_touchscreen_housing_body_length/2-controller_touchscreen_housing_back_screw_nut_height-clearance])
 							nut_trap_square(controller_touchscreen_housing_back_screw_nut_wrench,controller_touchscreen_housing_body_length);
 						translate([controller_touchscreen_housing_body_width/2-controller_touchscreen_glasssideclearance/2,controller_touchscreen_housing_body_height/4,controller_touchscreen_housing_body_length+controller_touchscreen_housing_body_length/2-controller_touchscreen_housing_back_screw_nut_height-clearance])

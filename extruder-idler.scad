@@ -43,6 +43,8 @@ include <configuration.scad>
 
 
 
+
+
 module extruder_idler(back=0){
 	difference(){
 
@@ -145,7 +147,7 @@ module extruder_idler(back=0){
 					rotate([90,0,0])
 						nut_trap_square(extruder_idler_bearing_screw_nut_wrench,extruder_idler_bearing_screw_nut_height+clearance+1);
 			}
-			translate([-extruder_back_body_width,-layer_height-(nema17_screw_lens_head_length+clearance)-(extruder_idler_bearing_screw_nut_height+clearance),-extruder_back_body_height/4])
+			if(support) translate([-extruder_back_body_width,-layer_height-(nema17_screw_lens_head_length+clearance)-(extruder_idler_bearing_screw_nut_height+clearance),-extruder_back_body_height/4])
 				cube([2*extruder_back_body_width,layer_height,2*extruder_back_body_height]);
 		}
 
@@ -173,10 +175,6 @@ module extruder_idler(back=0){
 		}
 		translate([extruder_drivegear_dia/2-extruder_drivegear_filament_insection+filament_dia/2,-extruder_front_body_length+wall+wall_thin+bearing_width/2,extruder_back_body_height-3*wall])
 			cylinder(r=filament_tube_dia/2+clearance,h=extruder_back_body_height);
-
-//////////// CABLE/WATERTUBE MANAGEMENT: T-SLOT for frame cable clip?
-
-
 	}
 }
 

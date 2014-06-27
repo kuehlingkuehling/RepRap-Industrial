@@ -194,9 +194,9 @@ module air_filter_fan_duct(){
 				difference(){
 					translate([air_filter_fan_duct_body_width/2-wall_thin-clearance-frame_screw_washer_dia/2,0,-1])
 						cylinder(r=frame_screw_dia/2+clearance,h=air_filter_fan_duct_body_height+2);
-					translate([air_filter_fan_duct_body_width/2-wall_thin-clearance-frame_screw_washer_dia/2,0,air_filter_fan_duct_body_height-wall])
+					if(support) translate([air_filter_fan_duct_body_width/2-wall_thin-clearance-frame_screw_washer_dia/2,0,air_filter_fan_duct_body_height-wall])
 						cylinder(r=frame_screw_dia/2+clearance+1,h=layer_height);
-					translate([air_filter_fan_duct_body_width/2-wall_thin-clearance-frame_screw_washer_dia/2,0,air_filter_fan_duct_body_height/2+air_filter_fan_hole_dist/2-air_filter_fan_screw_washer_dia/2-clearance-wall_thin+wall])
+					if(support) translate([air_filter_fan_duct_body_width/2-wall_thin-clearance-frame_screw_washer_dia/2,0,air_filter_fan_duct_body_height/2+air_filter_fan_hole_dist/2-air_filter_fan_screw_washer_dia/2-clearance-wall_thin+wall])
 						cylinder(r=frame_screw_dia/2+clearance+1,h=layer_height);
 				}
 				translate([air_filter_fan_duct_body_width/2-wall_thin-clearance-frame_screw_washer_dia/2,0,-(frame_screw_nut_height+2*clearance)/2+air_filter_fan_duct_body_height-wall])

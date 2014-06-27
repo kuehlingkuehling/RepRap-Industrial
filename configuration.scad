@@ -25,6 +25,8 @@ include <functions.scad>
 $fa=1;
 $fs=0.5;
 
+support = false;				// set to "true" for FFF 3d printing (generates printability support layers etc.), leave "false" for SLS 3d printing
+
 filament_dia = 2.85;
 filament_tolerance = 0.1;		// +/-
 filament_tube_dia = 6;			// inner dia: 4

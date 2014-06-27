@@ -249,7 +249,7 @@ module x_end(motor=1){
 							rotate([-90,0,0])
 								teardrop(belt_thickness_max+clearance,y_rod_y_belt_x_dist);
 					}
-					for(l=[0:(belt_grip_length-2)])
+					if(support) for(l=[0:(belt_grip_length-2)])
 						translate([-1,belt_tooth_periode+l*belt_tooth_periode,-(2*belt_thickness_max+2*clearance+2)/2])
 							cube([y_rod_y_belt_x_dist+2,layer_height,2*belt_thickness_max+2*clearance+2]);
 				}
@@ -266,7 +266,7 @@ module x_end(motor=1){
 				translate([0,-(2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance),-((cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance)/2)])
 						cube([cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance,belt_tensioning_nut_height+2*clearance+wall_thin+clearance,(cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+2*clearance)]);
 			}
-			intersection(){
+			if(support) intersection(){
 				translate([x_end_body_width_motor_addition+x_end_body_width-linear_bearing_dia/2-clearance-wall_thin-clearance-nema17_screw_hex_wrench_dia/2-nema17_screw_dia/2-clearance-wall-wall,-2,linear_bearing_dia/2+clearance])
 					cube([2*wall,x_end_body_length+4,2*wall]);
 				difference(){
@@ -280,7 +280,7 @@ module x_end(motor=1){
 			}
 
 			// y belt tensioner screw hole printability support
-			translate([y_rod_y_belt_x_dist,x_end_body_length-belt_tensioner_length-belt_tensioning_range,y_rod_y_belt_arbor_dist-y_belt_pulley_dia/2])
+			if(support) translate([y_rod_y_belt_x_dist,x_end_body_length-belt_tensioner_length-belt_tensioning_range,y_rod_y_belt_arbor_dist-y_belt_pulley_dia/2])
 				translate([0,-2*wall,0])
 					rotate([-90,0,0])
 						cylinder(r=belt_tensioning_screw_dia/2+clearance+1,layer_height);
@@ -400,7 +400,7 @@ module endstop_mount(teardrop=1,teardrop_angle=-90,top=1){
 	}
 
 	// hole printability support layer for top surface use of endstop_mount (no teardrop)
-	if(teardrop==0) if(top==1)
+	if(support) if(teardrop==0) if(top==1)
 		for(j=[-1,1])
 			translate([j*endstop_hole_dist/2,(2*wall+2*clearance+endstop_screw_dia)/2,endstop_screw_nut_height+2*clearance])
 				cylinder(r=endstop_screw_dia/2+clearance+wall_thin,h=layer_height);

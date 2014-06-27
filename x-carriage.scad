@@ -253,7 +253,6 @@ module x_carriage(){
 					}
 	
 			// belt grip
-//			translate([-x_carriage_body_length/2,x_belt_pulley_dia/2-(belt_thickness_max-belt_thickness_min),belt_width/2+clearance])
 			translate([-x_carriage_body_length/2,x_belt_pulley_dia/2,belt_width/2+clearance])
 				rotate([90,0,0]) rotate([0,0,-90])
 					translate([0,0,-belt_thickness_min])
@@ -268,7 +267,7 @@ module x_carriage(){
 									rotate([-90,0,0])
 										teardrop(belt_thickness_max+clearance,(belt_tensioner_height/2+belt_width/2+clearance+1));
 							}
-							for(l=[0:(belt_grip_length-2)])
+							if(support) for(l=[0:(belt_grip_length-2)])
 								translate([-1,belt_tooth_periode+l*belt_tooth_periode,-(2*belt_thickness_max+2*clearance+2)/2])
 									cube([(belt_tensioner_height/2+belt_width/2+clearance+1)+2,layer_height,2*belt_thickness_max+2*clearance+2]);
 						}
@@ -288,7 +287,7 @@ module x_carriage(){
 							translate([-((cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance)/2),-(2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance),0])
 								cube([cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance,belt_tensioning_nut_height+2*clearance+wall_thin+clearance,(cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+2*clearance)]);
 						}
-				intersection(){
+				if(support) intersection(){
 					translate([-x_carriage_body_length/2-1,x_belt_pulley_dia/2-belt_tensioning_screw_dia/2-clearance-2*wall,-(belt_tensioning_screw_dia/2+clearance)-2*wall])
 						cube([x_carriage_body_length+2,2*wall,2*wall]);
 					difference(){
@@ -339,7 +338,7 @@ module x_carriage(){
 					nut_slot_square(extruder_mount_screw_nut_wrench,extruder_mount_screw_nut_height,nema17_width);
 	}
 
-	mirror([0,1,0]){
+	if(support) mirror([0,1,0]){
 		// belt tensioner screw hole printability support layer
 		translate([x_carriage_body_length/2-(belt_tensioner_length+belt_tensioning_range/2)+(belt_tensioning_nut_height+2*clearance+wall_thin+clearance),x_belt_pulley_dia/2,0])
 				rotate([180,0,0]) rotate([0,0,-90])
