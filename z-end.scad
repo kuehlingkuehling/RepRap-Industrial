@@ -113,7 +113,7 @@ module z_end(top=0){
 
 		// spindle bearing trap
 		translate([0,0,z_end_body_height-set_collar_body_height-bearing_width-clearance])
-			cylinder(r=bearing_dia/2+clearance,h=z_end_body_height);
+			cylinder(r=bearing_dia/2+clearance_tight,h=z_end_body_height);
 		if(top==0)
 			hull(){
 				translate([0,-z_end_body_length/2,z_end_body_height-set_collar_body_height-wall_thin-clearance-bearing_width-wall/2])
@@ -140,7 +140,7 @@ module z_end(top=0){
 		for(i=[0,1])
 			mirror([i,0,0]){
 				translate([z_rod_dist/2,0,-1])
-					cylinder(r=rod_dia/2+clearance,h=z_end_body_height+2);
+					cylinder(r=rod_dia/2+clearance_tight,h=z_end_body_height+2);
 				translate([z_rod_dist/2-rod_dia/2-clearance-wall_thin-clearance-frame_screw_dia/2,0,z_end_body_height/2])
 					rotate([0,0,90])
 						teardrop(frame_screw_dia/2+clearance,2*z_end_body_length);

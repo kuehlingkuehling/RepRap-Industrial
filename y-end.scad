@@ -66,13 +66,13 @@ module y_end_body(front=0,back=1){
 			if(front==1)
 				translate([y_end_body_width/2+y_end_body_width_idler_addition-1,y_end_body_length/2-(wall+wall_thin+y_belt_pulley_dia/2),y_end_body_height-(wall+clearance+frame_screw_dia+clearance+wall+clearance+bearing_dia/2)])
 					rotate([0,90,0])
-						cylinder(r1=(y_idler_bolt_dia/2+clearance+wall_thin)+y_idler_bolt_washer_thickness-clearance+1,r2=(y_idler_bolt_dia/2+clearance+wall_thin),h=y_idler_bolt_washer_thickness-clearance+1);
+						cylinder(r1=(y_idler_bolt_dia/2+clearance+wall_thin)+y_idler_bolt_washer_thickness-clearance+1,r2=(y_idler_bolt_dia/2+clearance+wall_thin),h=y_idler_bolt_washer_thickness+1);
 		}
 
 		// y rod clamp
 		translate([0,0,wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2])
 			rotate([-90,0,0])
-				cylinder(r=rod_dia/2+clearance,h=y_end_body_length+2*y_end_body_length_arbor_addition+2,center=true);
+				cylinder(r=rod_dia/2+clearance_tight,h=y_end_body_length+2*y_end_body_length_arbor_addition+2,center=true);
 		cube([wall_thin,y_end_body_length+2*y_end_body_length_arbor_addition+2,2*(wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2)],center=true);
 
 
@@ -118,7 +118,7 @@ module y_end_body(front=0,back=1){
 		if(front==0){
 			translate([y_end_body_width-bearing_width-clearance,y_end_body_length/2-(wall+wall_thin+y_belt_pulley_dia/2),y_end_body_height-(wall+clearance+frame_screw_dia+clearance+wall+clearance+bearing_dia/2)])
 				rotate([-90,0,0])
-					teardrop(bearing_dia/2+clearance,y_end_body_width);
+					teardrop(bearing_dia/2+clearance_tight,y_end_body_width);
 			difference(){
 				translate([0,y_end_body_length/2-(wall+wall_thin+y_belt_pulley_dia/2),y_end_body_height-(wall+clearance+frame_screw_dia+clearance+wall+clearance+bearing_dia/2)])
 					rotate([-90,0,0])
