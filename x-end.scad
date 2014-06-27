@@ -136,7 +136,7 @@ module x_end(motor=1){
 
 		// x rod mount holes
 		for(j=[-1,1]){
-			translate([(x_end_body_width+x_end_body_width_motor_addition)/2-rod_dia/2-clearance-wall-clearance,x_end_body_length/2+j*x_rod_dist/2,-linear_bearing_dia/2-clearance-wall-clearance-rod_dia/2])
+			translate([(x_end_body_width+x_end_body_width_motor_addition)/2-rod_dia/2-clearance-wall-clearance-wall/2,x_end_body_length/2+j*x_rod_dist/2,-linear_bearing_dia/2-clearance-wall-clearance-rod_dia/2])
 				rotate([-90,0,0])
 					teardrop(rod_dia/2+clearance,x_end_body_width+x_end_body_width_motor_addition);
 		}
