@@ -67,8 +67,9 @@ m8_nut_height = 6.5;
 m8_washer_dia = 17.8;		// using larger dimension of round head flange screw head diameter here (m8 washer diameter: 16mm)
 m8_washer_thickness = 1.6;
 
-clearance = 0.2;				// for 3d printing
-clearance_laser = 0.4;		// for laser cutting
+clearance = 0.2;				// for 3d printing; loose fit (screw holes etc.)
+clearance_laser = 0.4;		// for laser cutting; gives 0.3mm actual clearance after laser cutting with 0.2mm cutting width
+clearance_tight = 0.1;		// for 3d printing; tight/snug fit (bearings, bushings etc.)
 layer_height = 0.24;
 nozzle_dia = 0.35;
 
@@ -164,28 +165,24 @@ endstop_screw_nut_height = m3_nut_height;
 endstop_magnet_dia = 4;
 endstop_magnet_length = 7;
 
-bed_bottom_side = 214;			// aluminum composite board (e.g. DiBond)
-bed_bottom_thickness = 3;			// aluminum composite board (e.g. DiBond)
-bed_heatbed_bottom_clearance = 13;
-bed_heatbed_thickness = 1.6;
+bed_heatbed_bottom_clearance = 3;
+bed_heatbed_thickness = 6.1;		// double faced corrugated aluminum sandwich
 bed_heatbed_side = 214;
-bed_glass_thickness = 0;
-bed_glass_side = 210;
-bed_surface_thickness = 2.55;		// PEI glass fabric composite
+bed_heatbed_glueing_edge = 5;
+bed_surface_thickness = 1.6;		// PEI carbon fabric composite
 bed_surface_side = 210;
-bed_clamp_width = 9;				// foldback clamps 25mm, max. clamp width 9mm
+bed_clamp_width = 9.5;				// foldback clamps 25mm, max. clamp width 9mm
 bed_clamp_length = 25;				// foldback clamps 25mm, max. clamp width 9mm
 bed_clamp_angle_thickness = 3.5;
 bed_clamp_angle_length = 14;
-bed_corner_screw_dia = m4_screw_dia;
-bed_corner_screw_nut_wrench = m4_nut_wrench;
-bed_corner_screw_nut_height = m4_nut_height;
+bed_leveling_mount_dia = 10;		// cylindrical glueing surfaces diameter for bonding to the aluminum sandwich
+bed_leveling_rod_end_bearing_dia = 15;
+bed_leveling_rod_end_bearing_width = 5;
+bed_leveling_rod_end_bearing_screw_dia = m4_screw_dia;
+bed_leveling_rod_end_bearing_screw_nut_wrench = m4_nut_wrench;
+bed_leveling_rod_end_bearing_screw_nut_height = m4_nut_height;
+bed_leveling_rod_end_bearing_shaft_wrench = 8;
 
-air_heater_assembling_screw_dia = m6_screw_dia;
-air_heater_assembling_screw_nut_wrench = m6_nut_wrench;
-air_heater_assembling_screw_nut_height = m6_capnut_height;	// cap nut
-air_heater_assembling_screw_sleevenut_dia = m6_sleevenut_dia;
-air_heater_assembling_screw_sleevenut_length = m6_sleevenut_length;
 air_heater_fan_side = 119;
 air_heater_fan_dia = 125;
 air_heater_fan_cutout_side = 116;
@@ -195,10 +192,12 @@ air_heater_fan_screw_washer_dia = m4_washer_dia;
 air_heater_uprofile_width = 120;
 air_heater_uprofile_height = 40;
 air_heater_uprofile_thickness = 3;
-air_heater_front_thickness = 3;		// dibond
 air_heater_cable_dia = 2;				// 2x2 AWG16
+air_heater_overtemp_cable_dia = 1.25; // 2x1 AWG24
 air_heater_mosfetboard_height = 15.45;
 air_heater_mosfetboard_thickness = 1.7;
+air_heater_heating_insert_height = 30;
+air_heater_heating_insert_top_clearance = 30;
 
 air_filter_fan_side = 80;
 air_filter_fan_dia = 90;
@@ -244,7 +243,6 @@ z_rod_clamp_nut_wrench = m4_nut_wrench;
 z_rod_clamp_nut_height = m4_nut_height;
 
 z_bed_bolt_screw_dia = m4_screw_dia;
-z_bed_bolt_screw_head_dia = m4_screw_head_dia;
 z_bed_bolt_screw_washer_dia = m4_washer_dia;
 z_bed_bolt_clamp_screw_dia = m4_screw_dia;
 z_bed_bolt_clamp_screw_nut_wrench = m4_nut_wrench;
@@ -336,11 +334,11 @@ controller_touchscreen_housing_back_screw_nut_height = m3_nut_height;
 controller_touchscreen_housing_mount_side = 40;
 controller_touchscreen_cable_clearance_dia = 20;
 controller_touchscreen_cable_dia = 8;
-controller_power_button_hole_dia = 16;
-controller_ethernet_coupling_width_front = 15;
-controller_ethernet_coupling_width_back = 18;
+controller_power_button_hole_dia = 15.75;
+controller_ethernet_coupling_width_front = 14.5;
+controller_ethernet_coupling_width_back = 18.6;
 controller_ethernet_coupling_height_front = 16.5;
-controller_ethernet_coupling_height_back = 19.5;
+controller_ethernet_coupling_height_back = 19;
 controller_ethernet_coupling_panel_thickness = 1.5;
 controller_ethernet_coupling_panel_front_dist = 8.2;
 controller_touchscreen_adapterpcb_width = 52;
@@ -417,18 +415,12 @@ led_screw_dia = m3_screw_dia;
 led_screw_nut_wrench = m3_nut_wrench;
 led_screw_nut_height = m3_nut_height;
 
-wiper_container_height = 60;
-wiper_container_width = 40;
-wiper_container_length = 60;
-wiper_container_wall = 1.5;
-wiper_brush_dist = 135;
-wiper_brush_head_height = 10;		// diagonal head height
-wiper_brush_head_dia = 15;
-wiper_brush_screw_nut_wrench = m3_nut_wrench;
-wiper_brush_screw_nut_height = m3_nut_height;
-wiper_brush_screw_dia = m3_screw_dia;
 wiper_brush_shaft_length = 38;
 wiper_brush_shaft_dia = 3.15;
+
+set_collar_body_dia = 22.4;
+set_collar_body_height = 9;
+set_collar_screw_pos_radius = 6.5;
 
 
 
@@ -473,11 +465,15 @@ x_carriage_body_height = linear_bearing_dia+2*clearance+2*wall;
 y_end_body_width_idler_addition = y_rod_y_belt_x_dist-y_end_body_width/2-clearance-y_idler_bolt_washer_thickness-bearing_width/2;
 y_end_body_length_arbor_addition = max(0,(wall+wall_thin+y_belt_pulley_dia/2+bearing_dia/2+clearance+wall)-frame_width);
 
-bed_corner_body_height = bed_heatbed_bottom_clearance+bed_heatbed_thickness+bed_glass_thickness+bed_surface_thickness-clearance + clearance+bed_bottom_thickness;
-bed_corner_body_side = wall+wall+bed_clamp_length+wall+wall;
+bed_corner_body_height = wall+(bed_clamp_angle_thickness+wall_thin)+wall_thin+bed_heatbed_thickness+bed_surface_thickness;
+bed_corner_body_width = wall+wall_thin+bed_clamp_length+wall_thin+wall;
+bed_corner_body_length = bed_clamp_angle_length+wall_thin;
 
-set_collar_body_dia = z_spindle_dia + 2*wall+ 6*clearance + 2*set_collar_screw_dia;
-set_collar_body_height = set_collar_screw_washer_dia + 2*wall + 2*clearance;
+bed_leveling_mount_body_height = wall+clearance+bed_leveling_rod_end_bearing_screw_dia/2+bed_leveling_rod_end_bearing_dia/2+wall_thin+bed_heatbed_bottom_clearance;
+
+// Deprecated in V1.1.0; replaced by steel clamp collar, dimensions set under PARAMETERS above now
+// set_collar_body_dia = z_spindle_dia + 2*wall+ 6*clearance + 2*set_collar_screw_dia;
+// set_collar_body_height = set_collar_screw_washer_dia + 2*wall + 2*clearance;
 
 z_end_body_width = z_rod_dist+rod_dia+2*clearance+2*wall;
 z_end_body_height = frame_width;
@@ -485,15 +481,11 @@ z_end_body_length = wall+wall+set_collar_body_dia/2+rod_dia/2+clearance+wall;
 
 air_heater_top_body_width = air_heater_uprofile_width+2*clearance+2*wall_thin;
 air_heater_top_body_length = air_heater_uprofile_height+2*clearance+2*wall_thin;
-air_heater_top_body_height = air_heater_uprofile_height-2*air_heater_uprofile_thickness+wall_thin+wall+clearance+wall;
+air_heater_top_body_height = 2*wall+clearance+2*wall;
 
 air_heater_bottom_body_width = air_heater_uprofile_width+2*clearance+2*wall_thin;
 air_heater_bottom_body_length = air_heater_uprofile_height+clearance+wall_thin;
 air_heater_bottom_body_height = air_heater_uprofile_height-2*air_heater_uprofile_thickness+wall_thin+wall+clearance+wall;
-
-air_heater_front_body_width = air_heater_uprofile_width-2*air_heater_uprofile_thickness-2*clearance;
-air_heater_front_body_length = air_heater_front_thickness;
-air_heater_front_body_height = frame_back_dist+2*frame_width-(air_heater_top_body_height-wall)-(air_heater_fan_side/2+air_heater_fan_hole_dist/2-air_heater_fan_screw_dia/2-clearance-wall);
 
 frame_corner_body_height = frame_width+frame_enclosure_thickness+clearance+3*wall;
 frame_corner_body_side = 2*frame_width+frame_enclosure_thickness+clearance+wall;
@@ -524,8 +516,8 @@ controller_touchscreen_housing_body_height = controller_touchscreen_height;
 controller_touchscreen_housing_mount_body_side = controller_touchscreen_housing_mount_side;
 controller_touchscreen_housing_mount_body_length = wall+sin(45)*controller_touchscreen_housing_body_height/2+controller_touchscreen_housing_mount_body_side/2;
 
-controller_ethernet_coupling_panel_body_width = controller_ethernet_coupling_width_front+2*(wall+clearance+frame_screw_dia+clearance+wall);
-controller_ethernet_coupling_panel_body_height = controller_ethernet_coupling_height_back+4*wall;
+controller_ethernet_coupling_panel_body_width = controller_ethernet_coupling_width_front+2*clearance+2*(wall+clearance+frame_screw_dia+clearance+wall);
+controller_ethernet_coupling_panel_body_height = controller_ethernet_coupling_height_back+2*clearance+4*wall;
 controller_ethernet_coupling_panel_body_length = max((controller_ethernet_coupling_panel_front_dist-frame_enclosure_thickness+controller_ethernet_coupling_panel_thickness),(wall+clearance+frame_screw_nut_height));
 
 pcb_mount_body_length = 2*frame_width;
@@ -552,11 +544,12 @@ air_filter_activatedcarbon_container_body_width = air_filter_fan_duct_body_width
 air_filter_activatedcarbon_container_body_length = air_filter_fan_duct_body_length;
 air_filter_activatedcarbon_container_grid_bar = wall_thin;
 
-z_bed_bolt_dist = 2*(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall+clearance+z_bed_bolt_screw_dia/2);
+z_bed_bolt_dist = 2*(z_rod_dist/2-linear_bearing_dia/2-clearance+cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2);					// equilateral triangle side length
+z_bed_bolt_radius = (((sqrt(3))/3)*z_bed_bolt_dist);			// equilateral triangle circumcircle radius
 
 z_bed_mount_body_height = frame_width+2*clearance+2*wall;
 z_bed_mount_body_width = 2*(z_bed_bolt_dist/2+z_bed_bolt_screw_dia/2+wall_thin+wall_thin+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall);
-z_bed_mount_body_length = wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2+(sqrt(3)/2)*z_bed_bolt_dist+z_bed_bolt_screw_head_dia/2+wall_thin+wall;
+z_bed_mount_body_length = wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2+(3/2*z_bed_bolt_radius)+cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2+wall_thin+wall_thin;
 
 z_motor_mount_body_width = nema17_width;
 z_motor_mount_body_length = nema17_width;

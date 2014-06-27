@@ -37,7 +37,7 @@ module air_heater_bottom(){
 			intersection(){
 				union(){
 					translate([-air_heater_bottom_body_width/2,-air_heater_bottom_body_length,0])
-						cube([air_heater_bottom_body_width,air_heater_bottom_body_length,air_heater_bottom_body_height]);
+						cube([air_heater_bottom_body_width,air_heater_bottom_body_length,air_heater_bottom_body_height+wall]);
 					hull(){
 						for(i=[0,1])
 							mirror([i,0,0]){
@@ -59,36 +59,24 @@ module air_heater_bottom(){
 					for(i=[0,1])
 						mirror([i,0,0])
 							translate([(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),-air_heater_bottom_body_length-1,-1])
-								cube([air_heater_bottom_body_width/2,air_heater_bottom_body_length+2,air_heater_bottom_body_height+2]);
-					translate([-wall_thin/2,-air_heater_bottom_body_length-1,-1])
-						cube([wall_thin,air_heater_bottom_body_length+2,air_heater_bottom_body_height+2]);
-
-					// leave material for assembling threaded rod hole/nut trap
-					translate([0,-wall_thin-clearance-air_heater_uprofile_thickness-clearance-air_heater_assembling_screw_dia/2,0])
-						hull(){
-							translate([-(air_heater_assembling_screw_nut_wrench/2+clearance+wall)+wall,-(wall+clearance+air_heater_assembling_screw_nut_wrench/2)+wall,0])
-								cylinder(r=wall,h=air_heater_bottom_body_height);
-							translate([(air_heater_assembling_screw_nut_wrench/2+clearance+wall)-wall,-(wall+clearance+air_heater_assembling_screw_nut_wrench/2)+wall,0])
-								cylinder(r=wall,h=air_heater_bottom_body_height);
-							translate([-(air_heater_assembling_screw_nut_wrench/2+clearance+wall)+wall,(wall+clearance+air_heater_assembling_screw_nut_wrench/2)-wall,0])
-								cylinder(r=wall,h=air_heater_bottom_body_height);
-							translate([(air_heater_assembling_screw_nut_wrench/2+clearance+wall)-wall,(wall+clearance+air_heater_assembling_screw_nut_wrench/2)-wall,0])
-								cylinder(r=wall,h=air_heater_bottom_body_height);
-						}
+								cube([air_heater_bottom_body_width/2,air_heater_bottom_body_length+2,air_heater_bottom_body_height+wall+2]);
+					translate([0,-air_heater_bottom_body_length+wall,air_heater_bottom_body_height-(wall+clearance+wall)])
+						rotate([180,0,0])
+							teardrop(air_heater_bottom_body_length-wall,wall_thin);
 				}
 			}
 			translate([-air_heater_bottom_body_width/2,-air_heater_bottom_body_length,air_heater_bottom_body_height-(wall+clearance+2*air_heater_cable_dia+clearance+wall_thin)])
-				cube([air_heater_bottom_body_width,air_heater_bottom_body_length,wall+clearance+2*air_heater_cable_dia+clearance+wall_thin]);
-				for(i=[0,1])
-					mirror([i,0,0])
-						hull(){
-								translate([air_heater_fan_hole_dist/2,-air_heater_bottom_body_length/2,air_heater_fan_side/2-air_heater_fan_hole_dist/2])
-									rotate([0,0,90])
-										rotate([180,0,0])
-											teardrop(air_heater_fan_screw_washer_dia/2+clearance+wall_thin,air_heater_bottom_body_length);
-								translate([air_heater_fan_hole_dist/2,-air_heater_bottom_body_length/2,wall/2])
-									cube([2*(air_heater_fan_screw_washer_dia/2+clearance+wall_thin),air_heater_bottom_body_length,wall],center=true);
-						}
+				cube([air_heater_bottom_body_width,air_heater_bottom_body_length,wall+clearance+2*air_heater_cable_dia+clearance+wall_thin+wall]);
+			for(i=[0,1])
+				mirror([i,0,0])
+					hull(){
+							translate([air_heater_fan_hole_dist/2,-air_heater_bottom_body_length/2,air_heater_fan_side/2-air_heater_fan_hole_dist/2])
+								rotate([0,0,90])
+									rotate([180,0,0])
+										teardrop(air_heater_fan_screw_washer_dia/2+clearance+wall_thin,air_heater_bottom_body_length);
+							translate([air_heater_fan_hole_dist/2,-air_heater_bottom_body_length/2,wall/2])
+								cube([2*(air_heater_fan_screw_washer_dia/2+clearance+wall_thin),air_heater_bottom_body_length,wall],center=true);
+					}
 		}
 
 		// air canal
@@ -99,9 +87,9 @@ module air_heater_bottom(){
 						cylinder(r=air_heater_uprofile_height-2*air_heater_uprofile_thickness,h=2*(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),center=true);
 				translate([-(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),-2*air_heater_bottom_body_length+wall,-(air_heater_uprofile_height-2*air_heater_uprofile_thickness)+air_heater_bottom_body_height-(wall+clearance+wall)])
 					cube([2*(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),air_heater_bottom_body_length,air_heater_uprofile_height-2*air_heater_uprofile_thickness]);
+				translate([-(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),-air_heater_bottom_body_length-wall_thin-clearance-wall,air_heater_bottom_body_height-(wall+clearance+wall)])
+					cube([2*(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),air_heater_bottom_body_length,air_heater_uprofile_height-2*air_heater_uprofile_thickness]);
 			}
-*			translate([-wall_thin/2,-air_heater_bottom_body_length-1,-1])
-				cube([wall_thin,air_heater_bottom_body_length+2,air_heater_bottom_body_height+2]);
 
 			// fan mount
 			difference(){
@@ -121,36 +109,16 @@ module air_heater_bottom(){
 						rotate([0,0,90])
 							rotate([180,0,0])
 								teardrop(air_heater_fan_screw_washer_dia/2+clearance+wall_thin,air_heater_bottom_body_length+2);
-
-			// leave material for assembling threaded rod hole/nut trap
-			translate([0,-wall_thin-clearance-air_heater_uprofile_thickness-clearance-air_heater_assembling_screw_dia/2,0])
-				hull(){
-					translate([-(air_heater_assembling_screw_nut_wrench/2+clearance+wall)+wall,-(wall+clearance+air_heater_assembling_screw_nut_wrench/2)+wall,0])
-						cylinder(r=wall,h=air_heater_bottom_body_height);
-					translate([(air_heater_assembling_screw_nut_wrench/2+clearance+wall)-wall,-(wall+clearance+air_heater_assembling_screw_nut_wrench/2)+wall,0])
-						cylinder(r=wall,h=air_heater_bottom_body_height);
-					translate([-(air_heater_assembling_screw_nut_wrench/2+clearance+wall)+wall,(wall+clearance+air_heater_assembling_screw_nut_wrench/2)-wall,0])
-						cylinder(r=wall,h=air_heater_bottom_body_height);
-					translate([(air_heater_assembling_screw_nut_wrench/2+clearance+wall)-wall,(wall+clearance+air_heater_assembling_screw_nut_wrench/2)-wall,0])
-						cylinder(r=wall,h=air_heater_bottom_body_height);
-				}
 		}
-
-		// air heater assembling threaded rod hole/nut trap
-		translate([0,-wall_thin-clearance-wall-clearance-air_heater_assembling_screw_dia/2,air_heater_assembling_screw_nut_height+clearance+layer_height])
-			cylinder(r=air_heater_assembling_screw_dia/2+clearance,h=air_heater_bottom_body_height+2);
-		translate([0,-wall_thin-clearance-wall-clearance-air_heater_assembling_screw_dia/2,(air_heater_assembling_screw_nut_height+clearance+1)/2-1])
-			rotate([0,0,30])
-				nut_trap(air_heater_assembling_screw_nut_wrench,air_heater_assembling_screw_nut_height+clearance+1);
 
 		// heater u-profile recess
 		difference(){
 			translate([-(air_heater_bottom_body_width-2*wall_thin)/2,-(air_heater_bottom_body_length-wall_thin+1)-wall_thin,air_heater_bottom_body_height-wall-clearance])
-				cube([air_heater_bottom_body_width-2*wall_thin,air_heater_bottom_body_length-wall_thin+1,wall+clearance+1]);
+				cube([air_heater_bottom_body_width-2*wall_thin,air_heater_bottom_body_length-wall_thin+1,2*wall+clearance+1]);
 			for(i=[0,1])
 				mirror([i,0,0])
 					translate([(air_heater_bottom_body_width/2-wall_thin-clearance-air_heater_uprofile_thickness-clearance-wall),-(air_heater_bottom_body_length-wall_thin-clearance-air_heater_uprofile_thickness-clearance+2)-wall_thin-clearance-air_heater_uprofile_thickness-clearance,-1])
-						cube([wall,air_heater_bottom_body_length-wall_thin-clearance-air_heater_uprofile_thickness-clearance+2,air_heater_bottom_body_height+2]);
+						cube([wall,air_heater_bottom_body_length-wall_thin-clearance-air_heater_uprofile_thickness-clearance+2,air_heater_bottom_body_height+wall+2]);
 
 		}
 
@@ -175,19 +143,28 @@ module air_heater_bottom(){
 		// heater cable clearance
 		for(i=[0,1])
 			mirror([i,0,0])
-				hull(){
-					translate([(air_heater_uprofile_width-2*air_heater_uprofile_thickness)/4+air_heater_cable_dia/2,1,air_heater_bottom_body_height+1])
-						rotate([90,0,0])
-							cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
-					translate([(air_heater_uprofile_width-2*air_heater_uprofile_thickness)/4-air_heater_cable_dia/2,1,air_heater_bottom_body_height+1])
-						rotate([90,0,0])
-							cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
-					translate([(air_heater_uprofile_width-2*air_heater_uprofile_thickness)/4+air_heater_cable_dia/2,1,air_heater_bottom_body_height-wall-clearance-air_heater_cable_dia-air_heater_cable_dia/2])
-						rotate([90,0,0])
-							cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
-					translate([(air_heater_uprofile_width-2*air_heater_uprofile_thickness)/4-air_heater_cable_dia/2,1,air_heater_bottom_body_height-wall-clearance-air_heater_cable_dia-air_heater_cable_dia/2])
-						rotate([90,0,0])
-							cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
-				}
+				translate([air_heater_overtemp_cable_dia/2+clearance+2*wall+clearance+air_heater_cable_dia,0,0])
+					hull(){
+						translate([air_heater_cable_dia/2,1,air_heater_bottom_body_height+wall+1])
+							rotate([90,0,0])
+								cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
+						translate([-air_heater_cable_dia/2,1,air_heater_bottom_body_height+wall+1])
+							rotate([90,0,0])
+								cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
+						translate([air_heater_cable_dia/2,1,air_heater_bottom_body_height-wall-clearance-air_heater_cable_dia-air_heater_cable_dia/2])
+							rotate([90,0,0])
+								cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
+						translate([-air_heater_cable_dia/2,1,air_heater_bottom_body_height-wall-clearance-air_heater_cable_dia-air_heater_cable_dia/2])
+							rotate([90,0,0])
+								cylinder(r=air_heater_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
+					}
+		hull(){
+			translate([0,1,air_heater_bottom_body_height+wall+1])
+				rotate([90,0,0])
+					cylinder(r=air_heater_overtemp_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
+			translate([0,1,air_heater_bottom_body_height-wall-clearance-air_heater_overtemp_cable_dia-air_heater_overtemp_cable_dia/2])
+				rotate([90,0,0])
+					cylinder(r=air_heater_overtemp_cable_dia/2+clearance,h=air_heater_bottom_body_length+2);
+		}
 	}
 }
