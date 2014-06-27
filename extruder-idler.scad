@@ -115,10 +115,10 @@ module extruder_idler(back=0){
 					cylinder(r=bearing_dia/2+wall_thin,h=wall_thin+bearing_width+wall_thin);
 			translate([extruder_drivegear_dia/2-extruder_drivegear_filament_insection+filament_dia+bearing_dia/2,-extruder_idler_body_length,extruder_back_body_height/2])
 				rotate([-90,0,0])
-					cylinder(r=bearing_center_dia/2-clearance,h=extruder_idler_body_length);
+					cylinder(r=bearing_center_dia/2-clearance_tight,h=extruder_idler_body_length);
 			translate([extruder_drivegear_dia/2-extruder_drivegear_filament_insection+filament_dia+bearing_dia/2,-extruder_idler_body_length,extruder_back_body_height/2])
 				rotate([-90,0,0])
-					cylinder(r=bearing_center_dia/2-clearance+wall_thin,h=wall+wall_thin+-clearance);
+					cylinder(r=bearing_center_dia/2-clearance+wall_thin,h=wall+wall_thin-clearance);
 			translate([extruder_drivegear_dia/2-extruder_drivegear_filament_insection+filament_dia+bearing_dia/2,-extruder_idler_body_length+wall+wall_thin+bearing_width+clearance,extruder_back_body_height/2])
 				rotate([-90,0,0])
 					cylinder(r=bearing_center_dia/2-clearance+wall_thin,h=extruder_idler_body_length);
