@@ -25,10 +25,10 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([0,180,0]) z_bed_mount();
+z_bed_mount();
 
 
-
+echo("z_bed_bolt_radius",z_bed_bolt_radius);
 
 
 module z_bed_mount(){
@@ -36,24 +36,14 @@ module z_bed_mount(){
 
 		// main body
 		union(){
-*			hull(){
-				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall),wall,-z_bed_mount_body_height/2])
-						cylinder(r=wall,h=z_bed_mount_body_height);
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,wall,-z_bed_mount_body_height/2])
-						cylinder(r=wall,h=z_bed_mount_body_height);
-				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall),z_bed_mount_body_length-wall,-z_bed_mount_body_height/2])
-						cylinder(r=wall,h=z_bed_mount_body_height);
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,z_bed_mount_body_length-wall,-z_bed_mount_body_height/2])
-						cylinder(r=wall,h=z_bed_mount_body_height);
-			}
 			hull(){
-				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance),wall,z_bed_mount_body_height/2-wall])
+				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance),wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=wall);
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance,wall,z_bed_mount_body_height/2-wall])
+				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance,wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=wall);
-				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance),z_bed_mount_body_length-wall,z_bed_mount_body_height/2-wall])
+				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance),z_bed_mount_body_length-wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=wall);
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance,z_bed_mount_body_length-wall,z_bed_mount_body_height/2-wall])
+				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall-wall-clearance,z_bed_mount_body_length-wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=wall);
 			}
 			hull(){
@@ -61,15 +51,15 @@ module z_bed_mount(){
 						cylinder(r=wall,h=z_bed_mount_body_height);
 				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=z_bed_mount_body_height);
-				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall),wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2+z_bed_bolt_screw_head_dia/2+wall_thin+clearance+wall-wall,-z_bed_mount_body_height/2])
+				translate([-(z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall),wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia+wall-wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=z_bed_mount_body_height);
-				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2+z_bed_bolt_screw_head_dia/2+wall_thin+clearance+wall-wall,-z_bed_mount_body_height/2])
+				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia+wall-wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=z_bed_mount_body_height);
 			}
 			hull(){
-				translate([-z_bed_mount_body_width/2+wall,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia-wall_thin-wall+wall,-z_bed_mount_body_height/2])
+				translate([-z_bed_mount_body_width/2+wall,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)-wall_thin-wall_thin+wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=z_bed_mount_body_height);
-				translate([z_bed_mount_body_width/2-wall,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia-wall_thin-wall+wall,-z_bed_mount_body_height/2])
+				translate([z_bed_mount_body_width/2-wall,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)-wall_thin-wall_thin+wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=z_bed_mount_body_height);
 				translate([-z_bed_mount_body_width/2+wall,z_bed_mount_body_length-wall,-z_bed_mount_body_height/2])
 						cylinder(r=wall,h=z_bed_mount_body_height);
@@ -86,23 +76,32 @@ module z_bed_mount(){
 					cube([frame_width_small+2*clearance,z_bed_mount_body_length+1,frame_width+2*clearance]);
 				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,z_bed_mount_body_length/2,0])
 					rotate([0,0,90])
-						rotate([180,0,0])
-							teardrop(frame_center_screw_dia/2+clearance,z_bed_mount_body_length+2);
+						teardrop(frame_center_screw_dia/2+clearance,z_bed_mount_body_length+2);
 				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,-z_bed_mount_body_length/2+wall,0])
 					rotate([0,0,90])
-						rotate([180,0,0])
-							teardrop(frame_center_screw_washer_dia/2+clearance,z_bed_mount_body_length);
-
+						teardrop(frame_center_screw_washer_dia/2+clearance,z_bed_mount_body_length);
 
 				// body cut off
+				translate([-wall,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia+wall,-z_bed_mount_body_height/2-1])
+					cube([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small+wall,z_bed_mount_body_length-(wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia+wall)-(wall_thin+wall_thin+cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)+wall_thin+wall_thin),z_bed_mount_body_height+2]);
 				hull(){
-					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-wall,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2+z_bed_bolt_screw_head_dia/2+wall_thin+clearance+wall+wall,-z_bed_mount_body_height/2-1])
+					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-wall-wall,wall+wall,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia+clearance+wall])
+						cylinder(r=wall,h=z_bed_mount_body_height);
+					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-wall-wall,z_bed_mount_body_length-wall-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)-wall_thin-wall-wall,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia+clearance+wall])
+						cylinder(r=wall,h=z_bed_mount_body_height);
+					translate([-1,wall+wall,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia+clearance+wall])
+						cylinder(r=wall,h=z_bed_mount_body_height);
+					translate([-1,z_bed_mount_body_length-wall-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)-wall_thin-wall-wall,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia+clearance+wall])
+						cylinder(r=wall,h=z_bed_mount_body_height);
+				}
+				hull(){
+					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-wall-wall,z_bed_mount_body_length/2,-z_bed_mount_body_height/2-1])
 						cylinder(r=wall,h=z_bed_mount_body_height+2);
-					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-wall,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia-wall_thin-wall-wall,-z_bed_mount_body_height/2-1])
+					translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small-wall-wall,z_bed_mount_body_length-wall-clearance-frame_screw_nut_height-wall,-z_bed_mount_body_height/2-1])
 						cylinder(r=wall,h=z_bed_mount_body_height+2);
-					translate([-1,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2+z_bed_bolt_screw_head_dia/2+wall_thin+clearance+wall+wall,-z_bed_mount_body_height/2-1])
+					translate([-1,z_bed_mount_body_length/2,-z_bed_mount_body_height/2-1])
 						cylinder(r=wall,h=z_bed_mount_body_height+2);
-					translate([-1,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia-wall_thin-wall-wall,-z_bed_mount_body_height/2-1])
+					translate([-1,z_bed_mount_body_length-wall-clearance-frame_screw_nut_height-wall,-z_bed_mount_body_height/2-1])
 						cylinder(r=wall,h=z_bed_mount_body_height+2);
 				}
 
@@ -110,40 +109,40 @@ module z_bed_mount(){
 				// bolt hole front
 				translate([0,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin/2+z_bed_bolt_screw_dia/2,0])
 					cylinder(r=z_bed_bolt_screw_dia/2+wall_thin/2,h=z_bed_mount_body_height+2,center=true);
-				translate([0,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2,-wall-clearance-z_bed_bolt_clamp_screw_dia-clearance-wall])
-					cylinder(r=z_bed_bolt_screw_head_dia/2+wall_thin,h=z_bed_mount_body_height,center=true);
+				translate([0,wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin+z_bed_bolt_screw_dia/2,wall+clearance+z_bed_bolt_clamp_screw_dia+clearance+wall])
+					cylinder(r=cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2+wall_thin,h=z_bed_mount_body_height,center=true);
 				// bolt holes back
-				translate([z_bed_bolt_dist/2+wall_thin/2,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia/2,0])
+				translate([z_bed_bolt_dist/2+wall_thin/2,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2,0])
 					cylinder(r=z_bed_bolt_screw_dia/2+wall_thin/2,h=z_bed_mount_body_height+2,center=true);
-				translate([z_bed_bolt_dist/2,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia/2,-wall-clearance-z_bed_bolt_clamp_screw_dia-clearance-wall])
-					cylinder(r=z_bed_bolt_screw_head_dia/2+wall_thin,h=z_bed_mount_body_height,center=true);
+				translate([z_bed_bolt_dist/2,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2,wall+clearance+z_bed_bolt_clamp_screw_dia+clearance+wall])
+					cylinder(r=cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2+wall_thin,h=z_bed_mount_body_height,center=true);
 				// bolt clamp front
-				translate([0,-z_bed_mount_body_length/2+wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin/2+z_bed_bolt_screw_dia/2,z_bed_mount_body_height/2-wall-clearance-z_bed_bolt_clamp_screw_dia/2])
+				translate([0,-z_bed_mount_body_length/2+wall+clearance+z_bed_bolt_clamp_screw_nut_height+clearance+wall_thin+wall_thin/2+z_bed_bolt_screw_dia/2,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia/2])
 					rotate([0,0,90])
-						rotate([180,0,0])
-							teardrop(z_bed_bolt_clamp_screw_dia/2+clearance,z_bed_mount_body_length);
-				translate([0,z_bed_bolt_clamp_screw_nut_height/2+clearance+wall,z_bed_mount_body_height/2-wall-clearance-z_bed_bolt_clamp_screw_dia/2])
-					rotate([0,0,-90])
-						nut_slot_square(z_bed_bolt_clamp_screw_nut_wrench,z_bed_bolt_clamp_screw_nut_height,z_bed_mount_body_length,vertical=1);
-				// bolt clamp back
-				translate([z_bed_mount_body_length/2+z_bed_bolt_dist/2,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia/2,z_bed_mount_body_height/2-wall-clearance-z_bed_bolt_clamp_screw_dia/2])
-					rotate([180,0,0])
 						teardrop(z_bed_bolt_clamp_screw_dia/2+clearance,z_bed_mount_body_length);
-				translate([-z_bed_bolt_clamp_screw_nut_height/2-clearance+z_bed_mount_body_width/2-wall,z_bed_mount_body_length-wall-wall_thin-z_bed_bolt_screw_head_dia/2,z_bed_mount_body_height/2-wall-clearance-z_bed_bolt_clamp_screw_dia/2])
-					rotate([0,0,0])
+				translate([0,z_bed_bolt_clamp_screw_nut_height/2+clearance+wall,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia/2])
+					rotate([180,0,0])
+						rotate([0,0,-90])
+							nut_slot_square(z_bed_bolt_clamp_screw_nut_wrench,z_bed_bolt_clamp_screw_nut_height,z_bed_mount_body_length,vertical=1);
+				// bolt clamp back
+				translate([z_bed_mount_body_length/2+z_bed_bolt_dist/2,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia/2])
+					teardrop(z_bed_bolt_clamp_screw_dia/2+clearance,z_bed_mount_body_length);
+				translate([-z_bed_bolt_clamp_screw_nut_height/2-clearance+z_bed_mount_body_width/2-wall,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2,-z_bed_mount_body_height/2+wall+clearance+z_bed_bolt_clamp_screw_dia/2])
+					rotate([180,0,0])
 						nut_slot_square(z_bed_bolt_clamp_screw_nut_wrench,z_bed_bolt_clamp_screw_nut_height,z_bed_mount_body_length,vertical=1);
+
+				// bottom frame screw holes
+				translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin-clearance-frame_width_small/2,z_bed_mount_body_length-wall_thin-wall_thin-cornerdiameter(bed_leveling_rod_end_bearing_shaft_wrench)/2,-z_bed_mount_body_height/2])
+					cylinder(r=frame_screw_dia/2+clearance,h=z_bed_mount_body_height,center=true);
 			}
 
 		// z cablechain mount
 		translate([0,z_bed_mount_body_length,clearance+wall])
 			rotate([0,0,90])
-				rotate([180,0,0])
-					teardrop(frame_screw_dia/2+clearance,z_bed_mount_body_length);
-		translate([0,-(frame_screw_nut_height/2-clearance)+z_bed_mount_body_length-wall,clearance+wall])
-			rotate([0,-90,0])
-				rotate([90,0,0])
-					nut_slot_square(frame_screw_nut_wrench,frame_screw_nut_height,z_bed_mount_body_height);
-
+				teardrop(frame_screw_dia/2+clearance,z_bed_mount_body_length);
+		translate([0,-(frame_screw_nut_height+1)/2+z_bed_mount_body_length-wall,clearance+wall])
+			rotate([90,0,0])
+				nut_trap_square(frame_screw_nut_wrench,frame_screw_nut_height+1);
 	}
 }
 
