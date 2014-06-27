@@ -208,7 +208,7 @@ air_filter_fan_hole_dist = 71.5;		// 80x80mm fan
 air_filter_fan_screw_dia = 5;			// hole for thermoplast screws grabbing into 4.5mm fan mount holes
 air_filter_fan_screw_washer_dia = m4_washer_dia;
 air_filter_activatedcarbon_size = 30;
-air_filter_activatedcarbon_container_grid_space = 3;
+air_filter_activatedcarbon_container_grid_space = 2.5;
 
 set_collar_screw_dia = m3_screw_dia;
 set_collar_screw_nut_wrench = m3_nut_wrench;
