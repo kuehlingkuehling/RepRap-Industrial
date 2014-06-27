@@ -26,8 +26,7 @@ include <configuration.scad>
 // RENDER FOR LASER CUTTING (.DXF EXPORT)
 
 // CHAMBER DOOR LEFT
-//projection(cut=false) 
-rotate([-90,0,0]) mirror([1,0,0]) frame_enclosure_chamber_door();
+*projection(cut=false) rotate([-90,0,0]) mirror([1,0,0]) frame_enclosure_chamber_door();
 
 // CHAMBER DOOR RIGHT
 * projection(cut=false) rotate([-90,0,0]) frame_enclosure_chamber_door();
@@ -51,10 +50,11 @@ rotate([-90,0,0]) mirror([1,0,0]) frame_enclosure_chamber_door();
 * projection(cut=false) rotate([-90,0,0]) frame_enclosure_base_front();
 
 // BASE BACK
-* projection(cut=false) rotate([-90,0,0]) frame_enclosure_base_back();
+ projection(cut=false) rotate([-90,0,0]) frame_enclosure_base_back();
 
 // BASE BOTTOM
 * projection(cut=true) translate([0,0,-1]) frame_enclosure_base_bottom();
+
 
 
 
@@ -159,7 +159,7 @@ module frame_enclosure_chamber_back(){
 				}
 
 		// filament tube holes
-		translate([-frame_extrusion_length_horizontal/2+x_cablechain_wall+filament_tube_dia/2,0,frame_extrusion_length_vertical-frame_width-2*x_cablechain_wall-clearance-(x_cablechain_width/(x_cablechain_dividers+1))/2])
+		translate([-frame_extrusion_length_horizontal/2+x_cablechain_wall+x_cablechain_height/2,0,frame_extrusion_length_vertical-frame_width-2*x_cablechain_wall-clearance-(x_cablechain_width/(x_cablechain_dividers+1))/2])
 			hull(){
 				translate([0,-1,filament_tube_dia/2])
 					rotate([-90,0,0])
@@ -381,7 +381,7 @@ module frame_enclosure_base_front(){
 		// power button hole
 		translate([frame_extrusion_length_horizontal/2-frame_width/2,1,-frame_enclosure_thickness+(frame_base_dist+frame_width+frame_enclosure_thickness)/2])
 			rotate([90,0,0])
-				cylinder(r=controller_power_button_hole_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
+				cylinder(r=controller_power_button_hole_dia/2+clearance,h=frame_enclosure_thickness+2);
 	}
 }
 
@@ -524,8 +524,8 @@ module frame_enclosure_base_back(){
 						translate([controller_ethernet_coupling_panel_body_width/2-wall-clearance-frame_screw_dia/2,0,controller_ethernet_coupling_panel_body_height/2])
 							rotate([-90,0,0])
 								cylinder(r=frame_screw_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
-				translate([-controller_ethernet_coupling_width_front/2,0,controller_ethernet_coupling_panel_body_height-2*wall-controller_ethernet_coupling_height_front])
-					cube([controller_ethernet_coupling_width_front,frame_enclosure_thickness+2,controller_ethernet_coupling_height_front]);
+				translate([-controller_ethernet_coupling_width_front/2-clearance_laser,0,controller_ethernet_coupling_panel_body_height-2*wall-clearance-controller_ethernet_coupling_height_front-clearance_laser])
+					cube([controller_ethernet_coupling_width_front+2*clearance_laser,frame_enclosure_thickness+2,controller_ethernet_coupling_height_front+2*clearance_laser]);
 			}
 	}
 }

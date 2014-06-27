@@ -35,7 +35,7 @@ include <configuration.scad>
 * rotate([180,0,0]) frame_corner(hinge=0);
 
 // MIDDLE FRONT LEFT
- frame_corner_middle(hinge=1);
+* frame_corner_middle(hinge=1);
 
 // MIDDLE FRONT RIGHT
 * mirror([1,0,0]) frame_corner_middle(hinge=1);
@@ -47,7 +47,7 @@ include <configuration.scad>
 * rotate([180,0,0]) frame_corner_door_top();
 
 // DOOR HINGE TOP RIGHT
-* rotate([180,0,0]) mirror([1,0,0]) frame_corner_door_top();
+ rotate([180,0,0]) mirror([1,0,0]) frame_corner_door_top();
 
 // DOOR HINGE BOTTOM LEFT
 * frame_corner_door_bottom();

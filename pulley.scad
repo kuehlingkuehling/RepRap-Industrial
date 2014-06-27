@@ -56,7 +56,7 @@ nut_shaft_distance	distance between inner face of nut and shaft, can be negative
 
 
 
- clearance_shaft = clearance;
+clearance_shaft = clearance_tight;
 // clearance_shaft = 0;
 
 
@@ -70,7 +70,7 @@ nut_shaft_distance	distance between inner face of nut and shaft, can be negative
 		render_pulley(
 			teeth = x_belt_pulley_teeth,
 			profile = 6,
-			motor_shaft = bearing_dia+clearance,			// press fit
+			motor_shaft = bearing_dia,			// press fit
 			m3_dia = m3_screw_dia,	
 			m3_nut_hex = 0,
 			m3_nut_flats = m3_nut_wrench,

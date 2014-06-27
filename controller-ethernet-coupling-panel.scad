@@ -25,7 +25,8 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([90,0,0]) controller_ethernet_coupling_panel();
+//rotate([90,0,0]) 
+controller_ethernet_coupling_panel();
 
 
 
@@ -51,12 +52,12 @@ module controller_ethernet_coupling_panel(){
 		}
 
 		// controller ethernet coupling mount
-		translate([-controller_ethernet_coupling_width_front/2,0,wall])
-			cube([controller_ethernet_coupling_width_front,controller_ethernet_coupling_panel_front_dist,controller_ethernet_coupling_panel_body_height-2*wall]);
-		translate([-controller_ethernet_coupling_width_front/2,0,2*wall])
-			cube([controller_ethernet_coupling_width_front,frame_enclosure_thickness+controller_ethernet_coupling_panel_body_length+1,controller_ethernet_coupling_height_back]);
-		translate([-controller_ethernet_coupling_width_back/2,controller_ethernet_coupling_panel_front_dist+controller_ethernet_coupling_panel_thickness,wall])
-			cube([controller_ethernet_coupling_width_back,controller_ethernet_coupling_panel_front_dist,controller_ethernet_coupling_panel_body_height-2*wall]);
+		translate([-controller_ethernet_coupling_width_front/2-clearance,0,wall])
+			cube([controller_ethernet_coupling_width_front+2*clearance,controller_ethernet_coupling_panel_front_dist,controller_ethernet_coupling_panel_body_height-2*wall]);
+		translate([-controller_ethernet_coupling_width_front/2-clearance,0,2*wall])
+			cube([controller_ethernet_coupling_width_front+2*clearance,frame_enclosure_thickness+controller_ethernet_coupling_panel_body_length+1,controller_ethernet_coupling_height_back+2*clearance]);
+		translate([-controller_ethernet_coupling_width_back/2-clearance,controller_ethernet_coupling_panel_front_dist+controller_ethernet_coupling_panel_thickness,wall])
+			cube([controller_ethernet_coupling_width_back+2*clearance,controller_ethernet_coupling_panel_front_dist,controller_ethernet_coupling_panel_body_height-2*wall]);
 
 		// frame enclosure mount screw holes and nut traps
 		for(i=[0,1])
