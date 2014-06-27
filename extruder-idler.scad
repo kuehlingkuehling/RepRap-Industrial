@@ -37,10 +37,6 @@ include <configuration.scad>
 * rotate([90,0,0]) mirror([1,0,0]) extruder_idler(back=0);
 
 
-// IDLER HINGE WASHER
-* extruder_idler_hinge_washer();
-
-
 
 
 
@@ -180,11 +176,5 @@ module extruder_idler(back=0){
 
 
 
-module extruder_idler_hinge_washer(){
-	difference(){
-		cylinder(r=extruder_mount_screw_washer_dia/2,h=nema17_screw_lens_head_length);
-		translate([0,0,-1])
-			cylinder(r=extruder_idler_hinge_screw_dia/2+clearance,h=extruder_idler_body_length+2);
-	}
-}
+
 
