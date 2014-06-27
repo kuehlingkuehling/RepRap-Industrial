@@ -32,7 +32,7 @@ include <configuration.scad>
 * rotate([90,0,0]) mirror([1,0,0]) x_end(motor=0);
 
 // X-IDLER SHAFT (2x)
- x_idler_shaft();
+* x_idler_shaft();
 
 
 
@@ -102,7 +102,7 @@ module x_end(motor=1){
 		difference(){
 			translate([0,-x_end_body_length/2,0])
 				rotate([-90,0,0])
-					cylinder(r=linear_bearing_dia/2+clearance, h=2*x_end_body_length);
+					cylinder(r=linear_bearing_dia/2+clearance_tight, h=2*x_end_body_length);
 
 			// linear bearing push in stop
 			translate([-linear_bearing_dia/2-clearance-wall_thin,x_end_body_length/2-(x_end_body_length-2*linear_bearing_length-2*clearance)/2,-linear_bearing_dia/2-clearance-wall_thin])
@@ -334,8 +334,8 @@ module x_end(motor=1){
 module x_idler_shaft(){
 	difference(){
 		union(){
-			cylinder(r=bearing_center_dia/2-clearance+wall_thin,h=rod_dia/2-bearing_width/2);
-			cylinder(r=bearing_center_dia/2-clearance,h=rod_dia/2-clearance/2);
+			cylinder(r=bearing_center_dia/2-clearance_tight+wall_thin,h=rod_dia/2-bearing_width/2);
+			cylinder(r=bearing_center_dia/2-clearance_tight,h=rod_dia/2-clearance/2);
 		}
 		translate([0,0,-1])
 			cylinder(r=x_idler_bolt_dia/2+clearance,h=rod_dia+2);

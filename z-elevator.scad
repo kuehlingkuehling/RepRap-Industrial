@@ -36,20 +36,6 @@ module z_elevator(){
 
 		// main body
 		union(){
-*			hull(){
-				for(h=[0,1])
-					mirror([h,0,0]){
-						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,z_elevator_body_length/2-wall,0])
-							cylinder(r=wall,h=z_elevator_body_height);
-						translate([z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin+wall-wall,-z_elevator_body_length/2+wall,0])
-							cylinder(r=wall,h=z_elevator_body_height);
-						translate([z_elevator_body_width/2-wall,linear_bearing_dia/2+clearance+wall-wall,0])
-							cylinder(r=wall,h=z_elevator_body_height);
-						translate([z_elevator_body_width/2-wall,-linear_bearing_dia/2-clearance-wall+wall,0])
-							cylinder(r=wall,h=z_elevator_body_height);
-					}
-			}
-
 			for(h=[0,1])
 				mirror([h,0,0])
 					hull(){
@@ -159,7 +145,7 @@ module z_elevator(){
 				// linear bearing mounts
 				difference(){
 					translate([z_rod_dist/2,0,-1])
-						cylinder(r=linear_bearing_dia/2+clearance,h=z_elevator_body_height+2);
+						cylinder(r=linear_bearing_dia/2+clearance_tight,h=z_elevator_body_height+2);
 
 					// linear bearing push in stop
 					translate([0,linear_bearing_dia/2+clearance-wall_thin,z_elevator_body_height/2-linear_bearing_dist_min/2+clearance])

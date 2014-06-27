@@ -198,7 +198,7 @@ module x_carriage(){
 				mirror([0,i,0]){
 					translate([-x_carriage_body_length/2-1,x_rod_dist/2,0])
 						rotate([0,90,0])
-							cylinder(r=linear_bearing_dia/2+clearance,h=x_carriage_body_length+2);
+							cylinder(r=linear_bearing_dia/2+clearance_tight,h=x_carriage_body_length+2);
 					for(j=[1,-1])
 						translate([j*(x_carriage_body_length/2-linear_bearing_length+linear_bearing_groove_pos+linear_bearing_groove_width/2),(linear_bearing_dia+2*clearance+wall+1)/2+x_rod_dist/2-linear_bearing_dia/2-clearance-wall-1,-(linear_bearing_groove_dia/2+linear_bearing_groove_width/2)])
 							rotate([0,0,90])
