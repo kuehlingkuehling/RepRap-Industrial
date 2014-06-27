@@ -113,7 +113,7 @@ module y_arbor_support_body(top=0){
 		// y belt arbor bearing trap
 		translate([y_arbor_support_body_width-bearing_width-clearance,-y_end_body_length/2+wall+clearance+bearing_dia/2-y_end_body_length_arbor_addition,y_arbor_frame_back_dist])
 			rotate([-90,0,0])
-				teardrop(bearing_dia/2+clearance,y_arbor_support_body_width);
+				teardrop(bearing_dia/2+clearance_tight,y_arbor_support_body_width);
 		translate([0,-y_end_body_length/2+wall+clearance+bearing_dia/2-y_end_body_length_arbor_addition,y_arbor_frame_back_dist])
 			rotate([-90,0,0])
 				teardrop(bearing_dia/2+clearance-wall_thin,y_arbor_support_body_width+2);
