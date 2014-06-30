@@ -21,18 +21,13 @@ License:
 include <configuration.scad>
 
 // RENDERING
-rotate([90,0,0])
-	union(){
-		translate([extruder_back_body_width/2,0,0])
-			extruder_back();		// RIGHT
-		translate([-extruder_back_body_width/2,0,0])
-			mirror([1,0,0])
-				extruder_back();	// LEFT
-	}
+rotate([90,0,0]) extruder_back();
+
 
 
 
 module extruder_back(){
+	for(i=[0,1]) translate([extruder_back_body_width/2-i*extruder_back_body_width,0,0]) mirror([i,0,0])
 	difference(){
 
 		// main body
