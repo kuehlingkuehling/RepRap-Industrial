@@ -56,9 +56,7 @@ m4_hex_wrench_dia = 3.5;			// allen key diameter
 
 m6_screw_dia = 6;
 m6_nut_wrench = 10;
-m6_capnut_height = 12;	// cap nut
-m6_sleevenut_dia = 9;		// sleve nut
-m6_sleevenut_length = 20;
+m6_nut_height = 5.2;
 
 m8_screw_dia = 8;
 m8_screw_head_wrench = 13;
@@ -285,13 +283,26 @@ extruder_cablechain_mount_screw_nut_wrench = m4_nut_wrench;
 
 x_carriage_cable_clamp_clearance = 8;
 
-x_cablechain_wall = 3;
-x_cablechain_width = 45;				// inner dimensions!
-x_cablechain_height = 20;				// inner dimensions!
-x_cablechain_additional_length = 5;
+// IGUS chain 200.03.075.0
+x_cablechain_mount_screw_dia = m6_screw_dia;
+x_cablechain_mount_nut_wrench = m6_nut_wrench;
+x_cablechain_mount_nut_height = m6_nut_height;
+x_cablechain_mount_hole_dist = 25;
+x_cablechain_width_outside = 55;				// max.
+x_cablechain_width_inside = 38;
+x_cablechain_height_outside = 35;
+x_cablechain_height_inside = 25;
 x_cablechain_dividers = 2;
-x_cablechain_mount = 1;					// mount = 0 for one screw; mount = 1 for two screws
 
+// DEPRECATED in v1.1.0, replaced by IGUS cablechain, new dimensions and parameters above
+// x_cablechain_wall = 3;
+// x_cablechain_width = 45;				// inner dimensions!
+// x_cablechain_height = 20;				// inner dimensions!
+// x_cablechain_additional_length = 5;
+// x_cablechain_dividers = 2;
+// x_cablechain_mount = 1;					// mount = 0 for one screw; mount = 1 for two screws
+
+// DEPRECATED in v1.1.0, drop-in replacement by IGUS chains, dimensions left for mounting point compatibility
 y_cablechain_wall = 2;
 y_cablechain_width = 25;				// inner dimensions!
 y_cablechain_height = 15;				// inner dimensions!
@@ -301,6 +312,7 @@ y_cablechain_mount = 0;					// mount = 0 for one screw; mount = 1 for two screws
 y_cablechain_rail_profile_side = 10;			// aluminium square profile
 y_cablechain_rail_profile_length = frame_extrusion_length_horizontal+10;	// 550
 
+// DEPRECATED in v1.1.0, drop-in replacement by IGUS chains, dimensions left for mounting point compatibility
 z_cablechain_wall = 2;
 z_cablechain_width = 20;				// inner dimensions!
 z_cablechain_height = 15;				// inner dimensions!

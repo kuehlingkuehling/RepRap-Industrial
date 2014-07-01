@@ -159,12 +159,12 @@ module frame_enclosure_chamber_back(){
 				}
 
 		// filament tube holes
-		translate([-frame_extrusion_length_horizontal/2+x_cablechain_wall+x_cablechain_height/2,0,frame_extrusion_length_vertical-frame_width-2*x_cablechain_wall-clearance-(x_cablechain_width/(x_cablechain_dividers+1))/2])
+		translate([-frame_extrusion_length_horizontal/2+x_cablechain_height_outside/2,0,frame_extrusion_length_vertical-frame_width-x_cablechain_width_outside/2+x_cablechain_width_inside/2-(x_cablechain_width_inside/(x_cablechain_dividers+1))/2])
 			hull(){
-				translate([0,-1,filament_tube_dia/2])
+				translate([filament_tube_dia/2,-1,0])
 					rotate([-90,0,0])
 						cylinder(r=filament_tube_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
-				translate([0,-1,-filament_tube_dia/2])
+				translate([-filament_tube_dia/2,-1,0])
 					rotate([-90,0,0])
 						cylinder(r=filament_tube_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
 			}
