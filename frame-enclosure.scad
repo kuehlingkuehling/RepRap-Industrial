@@ -26,7 +26,7 @@ include <configuration.scad>
 // RENDER FOR LASER CUTTING (.DXF EXPORT)
 
 // CHAMBER DOOR LEFT
-*projection(cut=false) rotate([-90,0,0]) mirror([1,0,0]) frame_enclosure_chamber_door();
+* projection(cut=false) rotate([-90,0,0]) mirror([1,0,0]) frame_enclosure_chamber_door();
 
 // CHAMBER DOOR RIGHT
 * projection(cut=false) rotate([-90,0,0]) frame_enclosure_chamber_door();

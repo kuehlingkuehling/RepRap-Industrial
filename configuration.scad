@@ -136,7 +136,7 @@ frame_extrusion_length_horizontal = 540;
 frame_extrusion_length_vertical = frame_width+frame_base_dist+frame_width+frame_extrusion_length_horizontal+frame_width;						// assembled frame height (vertical) = 800 (incl. cubic corner connectors)
 frame_angle_side = 28;					// aluminum angles for t-slot
 frame_door_handle_finger_clearance = 15;
-frame_door_lock_magnet_dia = 6;
+frame_door_lock_magnet_dia = 8;
 
 belt_width = 6;						// T2.5 belt, 6mm width
 belt_thickness_min = 1;			// for T5: 1; for T2.5: 0.6
