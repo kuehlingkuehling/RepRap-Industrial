@@ -103,7 +103,7 @@ nema17_shaft_dia = 5;
 nema17_gearbox_dia = 36;
 nema17_gearbox_length = 28;
 nema17_gearbox_center_dia = 22;
-nema17_gearbox_center_pitch = 2;
+nema17_gearbox_center_pitch = 1.5;
 nema17_gearbox_shaft_length = 20;		// distance mount flange surface - shaft end
 nema17_gearbox_hole_pos_dia = 28;
 
