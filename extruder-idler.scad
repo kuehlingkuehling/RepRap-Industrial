@@ -24,17 +24,61 @@ include <configuration.scad>
 // RENDERING
 
 // RIGHT BACK PART
-* rotate([-90,0,0]) extruder_idler(back=1);
+* difference(){
+	rotate([-90,0,0]) extruder_idler(back=1);
+	translate([-2*wall,extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall,extruder_front_body_length-wall-wall_thin-bearing_width/2-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/R.dxf");
+	translate([0,extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall,extruder_front_body_length-wall-wall_thin-bearing_width/2-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/B.dxf");
+}
 
 // RIGHT FRONT PART
-* rotate([90,0,0]) extruder_idler(back=0);
+* difference(){
+	rotate([90,0,0]) extruder_idler(back=0);
+	translate([wall,-(extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall),-(extruder_front_body_length-wall-wall_thin-bearing_width/2+wall_thin/2)])
+		rotate([0,0,180])
+			resize(newsize=[0,2*wall,0],auto=[true,true,false])
+				linear_extrude(height=wall_thin)
+					import("lib/R.dxf");
+	translate([-wall,-(extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall),-(extruder_front_body_length-wall-wall_thin-bearing_width/2+wall_thin/2)])
+		rotate([0,0,180])
+			resize(newsize=[0,2*wall,0],auto=[true,true,false])
+				linear_extrude(height=wall_thin)
+					import("lib/F.dxf");
+}
 
 
 // LEFT BACK PART
-* rotate([-90,0,0]) mirror([1,0,0]) extruder_idler(back=1);
+* difference(){
+	rotate([-90,0,0]) mirror([1,0,0]) extruder_idler(back=1);
+	translate([-wall,extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall,extruder_front_body_length-wall-wall_thin-bearing_width/2-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/L.dxf");
+	translate([wall,extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall,extruder_front_body_length-wall-wall_thin-bearing_width/2-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/B.dxf");
+}
 
 // LEFT FRONT PART
-* rotate([90,0,0]) mirror([1,0,0]) extruder_idler(back=0);
+* difference(){
+	rotate([90,0,0]) mirror([1,0,0]) extruder_idler(back=0);
+	translate([2*wall,-(extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall),-(extruder_front_body_length-wall-wall_thin-bearing_width/2+wall_thin/2)])
+		rotate([0,0,180])
+			resize(newsize=[0,2*wall,0],auto=[true,true,false])
+				linear_extrude(height=wall_thin)
+					import("lib/L.dxf");
+	translate([0,-(extruder_back_body_height/2+extruder_drivegear_dia/2+wall+wall),-(extruder_front_body_length-wall-wall_thin-bearing_width/2+wall_thin/2)])
+		rotate([0,0,180])
+			resize(newsize=[0,2*wall,0],auto=[true,true,false])
+				linear_extrude(height=wall_thin)
+					import("lib/F.dxf");
+}
 
 
 

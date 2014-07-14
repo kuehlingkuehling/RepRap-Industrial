@@ -24,10 +24,30 @@ include <configuration.scad>
 // RENDER FOR PRINTING
 
 // FRONT LEFT, BACK RIGHT
-* bed_corner();
+* difference(){
+	bed_corner();
+	translate([bed_corner_body_width/2,2*wall,wall+bed_clamp_angle_thickness+wall_thin+wall_thin-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/F.dxf");
+	translate([bed_corner_body_width/2+2*wall,2*wall,wall+bed_clamp_angle_thickness+wall_thin+wall_thin-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/L.dxf");
+}
 
 // FRONT RIGHT, BACK LEFT
-* mirror([1,0,0]) bed_corner();
+* difference(){
+	mirror([1,0,0]) bed_corner();
+	translate([-(bed_corner_body_width/2),2*wall,wall+bed_clamp_angle_thickness+wall_thin+wall_thin-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/F.dxf");
+	translate([-(bed_corner_body_width/2)+2*wall,2*wall,wall+bed_clamp_angle_thickness+wall_thin+wall_thin-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/R.dxf");
+}
 
 
 

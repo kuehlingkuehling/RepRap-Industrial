@@ -25,36 +25,127 @@ include <configuration.scad>
 // RENDERING
 
 // TOP FRONT LEFT
-* rotate([180,0,0]) frame_corner(hinge=1);
+* difference(){
+	rotate([180,0,0]) frame_corner(hinge=1);
+	translate([2*wall,-frame_width-frame_width/2-wall,-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/L.dxf");
+}
 
 // TOP FRONT RIGHT
-* rotate([180,0,0]) mirror([1,0,0]) frame_corner(hinge=1);
+* difference(){
+	rotate([180,0,0]) mirror([1,0,0]) frame_corner(hinge=1);
+	translate([-3*wall,-frame_width-frame_width/2-wall,-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/R.dxf");
+}
 
 // TOP BACK 2x
 // BOTTOM 4x
 * rotate([180,0,0]) frame_corner(hinge=0);
 
 // MIDDLE FRONT LEFT
-* frame_corner_middle(hinge=1);
+* difference(){
+	frame_corner_middle(hinge=1);
+	translate([-wall_thin/2,4*wall,-wall])
+		rotate([0,0,90])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/L.dxf");
+}
 
 // MIDDLE FRONT RIGHT
-* mirror([1,0,0]) frame_corner_middle(hinge=1);
+* difference(){
+	mirror([1,0,0]) frame_corner_middle(hinge=1);
+	translate([wall_thin/2,6*wall,-wall])
+		rotate([0,0,-90])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/R.dxf");
+}
 
 // MIDDLE BACK 2x
 * frame_corner_middle(hinge=0);
 
 // DOOR HINGE TOP LEFT
-* rotate([180,0,0]) frame_corner_door_top();
+* difference(){
+	rotate([180,0,0]) frame_corner_door_top();
+	translate([4*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
+		rotate([0,0,180])
+			rotate([180,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/T.dxf");
+	translate([2*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
+		rotate([0,0,180])
+			rotate([180,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/L.dxf");
+}
 
 // DOOR HINGE TOP RIGHT
- rotate([180,0,0]) mirror([1,0,0]) frame_corner_door_top();
+* difference(){
+	rotate([180,0,0]) mirror([1,0,0]) frame_corner_door_top();
+	translate([-2*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
+		rotate([0,0,180])
+			rotate([180,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/T.dxf");
+	translate([-4*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
+		rotate([0,0,180])
+			rotate([180,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/R.dxf");
+}
 
 // DOOR HINGE BOTTOM LEFT
-* frame_corner_door_bottom();
+* difference(){
+	frame_corner_door_bottom();
+	translate([4*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
+		rotate([0,0,180])
+			rotate([0,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/B.dxf");
+	translate([2*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
+		rotate([0,0,180])
+			rotate([0,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/L.dxf");
+}
 
 // DOOR HINGE BOTTOM RIGHT
-* mirror([1,0,0]) frame_corner_door_bottom();
-
+* difference(){
+	mirror([1,0,0]) frame_corner_door_bottom();
+	translate([-2*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
+		rotate([0,0,180])
+			rotate([0,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/B.dxf");
+	translate([-4*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
+		rotate([0,0,180])
+			rotate([0,0,0])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/R.dxf");
+}
 
 
 

@@ -25,11 +25,65 @@ frame_cable_clip_length = frame_width/2;
 
 
 // RENDER
+// SMALL
 * rotate([90,0,0]) frame_cable_clip(width=frame_width_small,height=4);
-* rotate([90,0,0]) frame_cable_clip(width=frame_width,height=6);
-* rotate([90,0,0]) frame_cable_clip(width=frame_width,height=8);
-* rotate([90,0,0]) frame_cable_clip(width=frame_width,height=10);
-* rotate([90,0,0]) frame_cable_clip(width=frame_width,height=15);
+
+// 6 MM
+* difference(){
+	rotate([90,0,0]) frame_cable_clip(width=frame_width,height=6);
+	translate([-wall,-wall_thin/2,-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/6.dxf");
+}
+
+// 8 MM
+* difference(){
+	rotate([90,0,0]) frame_cable_clip(width=frame_width,height=8);
+	translate([-wall,-wall_thin/2,-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/8.dxf");
+}
+
+// 10 MM
+* difference(){
+	rotate([90,0,0]) frame_cable_clip(width=frame_width,height=10);
+	translate([-wall,-wall_thin/2,-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/1.dxf");
+	translate([-wall-wall,-wall_thin/2,-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/0.dxf");
+}
+
+// 15 MM
+* difference(){
+	rotate([90,0,0]) frame_cable_clip(width=frame_width,height=15);
+	translate([-wall,-wall_thin/2,-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/1.dxf");
+	translate([-wall-wall,-wall_thin/2,-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/5.dxf");
+}
+
 
 
 
