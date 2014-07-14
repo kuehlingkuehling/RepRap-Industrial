@@ -26,9 +26,45 @@ include <configuration.scad>
 
 
 // RENDERING
-* rotate([180,0,0]) frame_enclosure_cable_feedthrough(cable_clearance=10);
-* rotate([180,0,0]) frame_enclosure_cable_feedthrough(cable_clearance=15);
-* rotate([180,0,0]) frame_enclosure_cable_feedthrough(cable_clearance=20);
+// 10 MM
+* difference(){
+	rotate([180,0,0]) frame_enclosure_cable_feedthrough(cable_clearance=10);
+	translate([frame_enclosure_cable_feedthrough_body_side/2+wall/2,-frame_enclosure_cable_feedthrough_body_side/2-wall-2*wall-wall/4,-wall_thin+wall-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/1.dxf");
+	translate([frame_enclosure_cable_feedthrough_body_side/2+2*wall,-frame_enclosure_cable_feedthrough_body_side/2-wall-2*wall-wall/4,-wall_thin+wall-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/0.dxf");
+}
+
+// 15 MM
+* difference(){
+	rotate([180,0,0]) frame_enclosure_cable_feedthrough(cable_clearance=15);
+	translate([frame_enclosure_cable_feedthrough_body_side/2+wall/2,-frame_enclosure_cable_feedthrough_body_side/2-wall-2*wall-wall/4,-wall_thin+wall-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/1.dxf");
+	translate([frame_enclosure_cable_feedthrough_body_side/2+2*wall,-frame_enclosure_cable_feedthrough_body_side/2-wall-2*wall-wall/4,-wall_thin+wall-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/5.dxf");
+}
+
+// 20 MM
+* difference(){
+	rotate([180,0,0]) frame_enclosure_cable_feedthrough(cable_clearance=20);
+	translate([frame_enclosure_cable_feedthrough_body_side/2+wall/2,-frame_enclosure_cable_feedthrough_body_side/2-wall-2*wall-wall/4,-wall_thin+wall-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/2.dxf");
+	translate([frame_enclosure_cable_feedthrough_body_side/2+2*wall,-frame_enclosure_cable_feedthrough_body_side/2-wall-2*wall-wall/4,-wall_thin+wall-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/0.dxf");
+}
+
 
 
 

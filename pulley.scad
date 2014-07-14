@@ -244,7 +244,8 @@ clearance_shaft = clearance_tight;
 
 
 // PULLEY Y MOTOR
-*	render_pulley(
+* difference(){
+	render_pulley(
 		teeth = y_motor_pulley_teeth,
 		profile = 6,
 		motor_shaft = nema17_shaft_dia+2*clearance_shaft,
@@ -263,10 +264,17 @@ clearance_shaft = clearance_tight;
 		nut_angle = 120,
 		nut_shaft_distance = 2*wall_thin			// wall_thin
 		);
+	translate([wall,-wall,wall+m3_screw_dia+wall+3*wall_thin+belt_width-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/Y.dxf");
+}
+
 
 
 // PULLEY Z MOTOR
-*	render_pulley(
+* difference(){
+	render_pulley(
 		teeth = z_motor_pulley_teeth,
 		profile = 6,
 		motor_shaft = nema17_shaft_dia+2*clearance_shaft,
@@ -285,10 +293,15 @@ clearance_shaft = clearance_tight;
 		nut_angle = 120,
 		nut_shaft_distance = 2*wall_thin
 		);
-
+	translate([wall,-wall,wall+m3_screw_dia+wall+3*wall_thin+belt_width-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/Z.dxf");
+}
 
 // PULLEY Z SPINDLE
-*	union(){
+* difference(){
+	union(){
 		difference(){
 			render_pulley(
 				teeth = z_belt_pulley_teeth,
@@ -371,9 +384,15 @@ clearance_shaft = clearance_tight;
 				nut_shaft_distance = 2*wall_thin
 				);
 	}
+	translate([2*wall,-wall,m3_nut_wrench/2+m3_screw_dia/2+3*wall_thin+belt_width-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/Z.dxf");
+}
 
 // PULLEY X MOTOR
-*	union(){
+* difference(){
+	union(){
 		difference(){
 			render_pulley(
 				teeth = x_motor_pulley_teeth,
@@ -456,6 +475,11 @@ clearance_shaft = clearance_tight;
 				nut_shaft_distance = 2*wall_thin			// wall_thin
 				);
 	}
+	translate([2*wall,-wall,m3_nut_wrench/2+m3_screw_dia/2+3*wall_thin+belt_width-wall_thin/2])
+		resize(newsize=[0,2*wall,0],auto=[true,true,false])
+			linear_extrude(height=wall_thin)
+				import("lib/X.dxf");
+}
 
 
 

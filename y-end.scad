@@ -26,16 +26,76 @@ include <configuration.scad>
 // RENDERING
 
 // Y END FRONT LEFT
-* rotate([-90,0,0]) mirror([0,1,0]) y_end_body(front=1,back=0);
+* difference(){
+	rotate([-90,0,0]) mirror([0,1,0]) y_end_body(front=1,back=0);
+	translate([-y_end_body_width/2+wall_thin/2,6*wall,-wall])
+		rotate([0,0,-90])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/F.dxf");
+	translate([-y_end_body_width/2+wall_thin/2,4*wall,-wall])
+		rotate([0,0,-90])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/L.dxf");
+}
 
 // Y END FRONT RIGHT
-* mirror([1,0,0]) rotate([-90,0,0]) mirror([0,1,0]) y_end_body(front=1,back=0);
+* difference(){
+	mirror([1,0,0]) rotate([-90,0,0]) mirror([0,1,0]) y_end_body(front=1,back=0);
+	translate([y_end_body_width/2-wall_thin/2,4*wall,-wall])
+		rotate([0,0,90])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/F.dxf");
+	translate([y_end_body_width/2-wall_thin/2,6*wall,-wall])
+		rotate([0,0,90])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/R.dxf");
+}
 
 // Y END BACK LEFT
-* rotate([90,0,0]) y_end_body(front=0,back=1);
+* difference(){
+	rotate([90,0,0]) y_end_body(front=0,back=1);
+	rotate([0,0,180])
+		translate([y_end_body_width/2-wall_thin/2,4*wall,-wall])
+			rotate([0,0,90])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/B.dxf");
+	rotate([0,0,180])
+		translate([y_end_body_width/2-wall_thin/2,6*wall,-wall])
+			rotate([0,0,90])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/L.dxf");
+}
 
 // Y END BACK RIGHT
-* mirror([1,0,0]) rotate([90,0,0]) y_end_body(front=0,back=1);
+* difference(){
+	mirror([1,0,0]) rotate([90,0,0]) y_end_body(front=0,back=1);
+	rotate([0,0,180])
+		translate([-y_end_body_width/2+wall_thin/2,6*wall,-wall])
+			rotate([0,0,-90])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/B.dxf");
+	rotate([0,0,180])
+		translate([-y_end_body_width/2+wall_thin/2,4*wall,-wall])
+			rotate([0,0,-90])
+				rotate([90,0,0])
+					resize(newsize=[0,2*wall,0],auto=[true,true,false])
+						linear_extrude(height=wall_thin)
+							import("lib/R.dxf");
+}
 
 
 

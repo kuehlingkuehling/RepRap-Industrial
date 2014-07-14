@@ -26,10 +26,24 @@ include <configuration.scad>
 
 
 // X-END MOTOR
-* rotate([90,0,0]) x_end(motor=1);
+* difference(){
+	rotate([90,0,0]) x_end(motor=1);
+	translate([0,x_end_body_height/2,x_end_body_length-wall_thin/2])
+		rotate([0,0,180])
+			resize(newsize=[0,2*wall,0],auto=[true,true,false])
+				linear_extrude(height=wall_thin)
+					import("lib/L.dxf");
+}
 
 // X-END IDLER
-* rotate([90,0,0]) mirror([1,0,0]) x_end(motor=0);
+* difference(){
+	rotate([90,0,0]) mirror([1,0,0]) x_end(motor=0);
+	translate([0,x_end_body_height/2,x_end_body_length-wall_thin/2])
+		rotate([0,0,180])
+			resize(newsize=[0,2*wall,0],auto=[true,true,false])
+				linear_extrude(height=wall_thin)
+					import("lib/R.dxf");
+}
 
 // X-IDLER SHAFT (2x)
 * x_idler_shaft();
