@@ -22,13 +22,30 @@ include <configuration.scad>
 
 
 
+
 // RENDERING
 
 // TOP
-* z_end(top=1);
+* difference(){
+	z_end(top=1);
+	translate([0,set_collar_body_dia/2+wall_thin+wall-wall_thin/2,z_end_body_height/2-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/T.dxf");
+}
 
 // BOTTOM
-* z_end(top=0);
+* difference(){
+	z_end(top=0);
+	translate([0,set_collar_body_dia/2+wall_thin+wall-wall_thin/2,z_end_body_height/2-wall])
+		rotate([0,0,180])
+			rotate([90,0,0])
+				resize(newsize=[0,2*wall,0],auto=[true,true,false])
+					linear_extrude(height=wall_thin)
+						import("lib/B.dxf");
+}
 
 
 
