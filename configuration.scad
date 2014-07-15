@@ -432,7 +432,7 @@ led_screw_nut_height = m3_nut_height;
 wiper_brush_shaft_length = 38;
 wiper_brush_shaft_dia = 3.15;
 
-set_collar_body_dia = 22.4;
+set_collar_body_dia = 22.4;			// diameter incl. clearance for screw head when rotating
 set_collar_body_height = 9;
 set_collar_screw_pos_radius = 6.5;
 
@@ -491,7 +491,7 @@ bed_leveling_mount_body_height = wall+clearance+bed_leveling_rod_end_bearing_scr
 
 z_end_body_width = z_rod_dist+rod_dia+2*clearance+2*wall;
 z_end_body_height = frame_width;
-z_end_body_length = wall+wall+set_collar_body_dia/2+rod_dia/2+clearance+wall;
+z_end_body_length = wall+(set_collar_body_dia/2+wall_thin)+rod_dia/2+clearance+wall;
 
 air_heater_top_body_width = air_heater_uprofile_width+2*clearance+2*wall_thin;
 air_heater_top_body_length = air_heater_uprofile_height+2*clearance+2*wall_thin;

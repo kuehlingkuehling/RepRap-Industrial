@@ -43,7 +43,7 @@ module z_end(top=0){
 					mirror([i,0,0]){
 						translate([z_end_body_width/2-wall,-rod_dia/2-clearance-wall+wall,0])
 							cylinder(r=wall,h=z_end_body_height);
-						translate([z_end_body_width/2-wall,set_collar_body_dia/2+wall+wall-wall,0])
+						translate([z_end_body_width/2-wall,set_collar_body_dia/2+wall_thin+wall-wall,0])
 							cube([wall,wall,z_end_body_height]);
 					}
 			}
