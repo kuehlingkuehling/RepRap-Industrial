@@ -165,10 +165,10 @@ endstop_screw_nut_height = m3_nut_height;
 endstop_magnet_dia = 4;
 endstop_magnet_length = 7;
 
-bed_heatbed_bottom_clearance = 3;
 bed_heatbed_thickness = 6.1;		// double faced corrugated aluminum sandwich
-bed_heatbed_side = 214;
-bed_heatbed_glueing_edge = 5;
+bed_heatbed_side = 212;
+bed_siliconeheater_thickness = 3;
+bed_siliconeheater_side = 210;
 bed_surface_thickness = 1.5;		// PEI carbon fabric composite
 bed_surface_side = 210;
 bed_clamp_width = 9.5;				// foldback clamps 25mm, max. clamp width 9mm
@@ -485,7 +485,7 @@ bed_corner_body_height = wall+(bed_clamp_angle_thickness+wall_thin)+wall_thin+be
 bed_corner_body_width = wall+wall_thin+bed_clamp_length+wall_thin+wall;
 bed_corner_body_length = bed_clamp_angle_length+wall_thin;
 
-bed_leveling_mount_body_height = wall+clearance+bed_leveling_rod_end_bearing_screw_dia/2+bed_leveling_rod_end_bearing_dia/2+wall_thin+bed_heatbed_bottom_clearance;
+bed_leveling_mount_body_height = wall+clearance+bed_leveling_rod_end_bearing_screw_dia/2+bed_leveling_rod_end_bearing_dia/2+wall_thin+bed_siliconeheater_thickness;
 
 // Deprecated in V1.1.0; replaced by steel clamp collar, dimensions set under PARAMETERS above now
 // set_collar_body_dia = z_spindle_dia + 2*wall+ 6*clearance + 2*set_collar_screw_dia;
