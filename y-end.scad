@@ -106,27 +106,19 @@ module y_end_body(front=0,back=1){
 	difference(){
 
 		// main body
-		union(){
-			hull(){
-				translate([front*y_end_body_width_idler_addition/2,frame_width/2-wall,y_end_body_height-wall])
-					rotate([90,0,0])
-						teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
-				translate([front*y_end_body_width_idler_addition/2,frame_width/2-wall,wall])
-					rotate([90,0,0])
-						teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
-				translate([front*y_end_body_width_idler_addition/2,-frame_width/2-back*y_end_body_length_arbor_addition+wall,y_end_body_height-wall])
-					rotate([90,0,0])
-						teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
-				translate([front*y_end_body_width_idler_addition/2,-frame_width/2-back*y_end_body_length_arbor_addition+wall,wall])
-					rotate([90,0,0])
-						teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
-			}
-
-			// y belt idler bolt bearing washer (y end front)
-			if(front==1)
-				translate([y_end_body_width/2+y_end_body_width_idler_addition-1,y_end_body_length/2-(wall+wall_thin+y_belt_pulley_dia/2),y_end_body_height-(wall+clearance+frame_screw_dia+clearance+wall+clearance+bearing_dia/2)])
-					rotate([0,90,0])
-						cylinder(r1=(y_idler_bolt_dia/2+clearance+wall_thin)+y_idler_bolt_washer_thickness-clearance+1,r2=(y_idler_bolt_dia/2+clearance+wall_thin),h=y_idler_bolt_washer_thickness+1);
+		hull(){
+			translate([front*y_end_body_width_idler_addition/2,frame_width/2-wall,y_end_body_height-wall])
+				rotate([90,0,0])
+					teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
+			translate([front*y_end_body_width_idler_addition/2,frame_width/2-wall,wall])
+				rotate([90,0,0])
+					teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
+			translate([front*y_end_body_width_idler_addition/2,-frame_width/2-back*y_end_body_length_arbor_addition+wall,y_end_body_height-wall])
+				rotate([90,0,0])
+					teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
+			translate([front*y_end_body_width_idler_addition/2,-frame_width/2-back*y_end_body_length_arbor_addition+wall,wall])
+				rotate([90,0,0])
+					teardrop(wall,y_end_body_width+front*y_end_body_width_idler_addition);
 		}
 
 		// y rod clamp

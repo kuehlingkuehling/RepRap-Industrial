@@ -478,7 +478,7 @@ x_carriage_body_length = 2*extruder_back_body_width;
 x_carriage_body_width = x_rod_dist+linear_bearing_dia+2*clearance+2*wall;
 x_carriage_body_height = linear_bearing_dia+2*clearance+2*wall;
 
-y_end_body_width_idler_addition = y_rod_y_belt_x_dist-y_end_body_width/2-clearance-y_idler_bolt_washer_thickness-bearing_width/2;
+y_end_body_width_idler_addition = y_rod_y_belt_x_dist-y_end_body_width/2-2*y_idler_bolt_washer_thickness-bearing_width/2;
 y_end_body_length_arbor_addition = max(0,(wall+wall_thin+y_belt_pulley_dia/2+bearing_dia/2+clearance+wall)-frame_width);
 
 bed_corner_body_height = wall+(bed_clamp_angle_thickness+wall_thin)+wall_thin+bed_heatbed_thickness+bed_surface_thickness;
