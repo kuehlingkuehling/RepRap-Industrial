@@ -57,7 +57,7 @@ module y_endstop_magnet_mount(){
 		// y rod clamp
 		translate([0,0,wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2])
 			rotate([-90,0,0])
-				cylinder(r=rod_dia/2+clearance,h=y_endstop_magnet_mount_body_length+2,center=true);
+				cylinder(r=rod_dia/2+clearance_tight,h=y_endstop_magnet_mount_body_length+2,center=true);
 		cube([wall_thin,y_endstop_magnet_mount_body_length+2,2*(wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2)],center=true);
 
 		// rod clamp screw hole and nut trap

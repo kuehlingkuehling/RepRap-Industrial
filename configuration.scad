@@ -585,8 +585,8 @@ filament_feed_body_length = wall+wall_thin+filament_feed_dust_cleaner_foam_side+
 filament_feed_body_width = 2*(frame_center_screw_dia/2+clearance+wall_thin+filament_feed_dust_cleaner_foam_side+wall);
 filament_feed_body_height = filament_feed_quick_connector_countersink+clearance+2*wall+clearance+filament_feed_sensor_height+clearance+wall+filament_feed_dust_cleaner_foam_side;
 
-y_endstop_magnet_mount_body_width = rod_dia+2*wall+2*clearance;
-y_endstop_magnet_mount_body_height = wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2+linear_bearing_dia/2+clearance+wall+clearance+endstop_screw_nut_height+clearance+wall+endstop_magnet_dia/2+clearance+wall;
+y_endstop_magnet_mount_body_width = rod_dia+2*wall+2*clearance_tight;
+y_endstop_magnet_mount_body_height = wall+clearance+frame_screw_dia+clearance+wall_thin+clearance_tight+rod_dia/2+linear_bearing_dia/2+clearance_tight+wall+clearance+endstop_screw_nut_height+clearance+wall+endstop_magnet_dia/2+clearance+wall;
 y_endstop_magnet_mount_body_length = wall+clearance+frame_screw_nut_wrench+clearance+wall;
 
 led_mount_body_height = wall+clearance+led_screw_dia/2+led_hole_dist+led_screw_nut_wrench/2+clearance+wall_thin+clearance+frame_screw_head_flange_dia+clearance+wall_thin;
