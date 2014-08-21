@@ -55,7 +55,7 @@ module y_endstop_magnet_mount(){
 		}
 
 		// y rod clamp
-		translate([0,0,wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2])
+		translate([0,0,wall+clearance+frame_screw_dia+clearance+wall_thin+clearance_tight+rod_dia/2])
 			rotate([-90,0,0])
 				cylinder(r=rod_dia/2+clearance_tight,h=y_endstop_magnet_mount_body_length+2,center=true);
 		cube([wall_thin,y_endstop_magnet_mount_body_length+2,2*(wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2)],center=true);
@@ -69,7 +69,7 @@ module y_endstop_magnet_mount(){
 				nut_trap_square(frame_screw_nut_wrench,frame_screw_nut_height+clearance+1);
 
 		// endstop magnet hole
-		translate([0,-y_endstop_magnet_mount_body_length/2-1,wall+clearance+frame_screw_dia+clearance+wall_thin+clearance+rod_dia/2+linear_bearing_dia/2+clearance+wall+clearance+endstop_screw_nut_height+clearance+wall])
+		translate([0,-y_endstop_magnet_mount_body_length/2-1,y_endstop_magnet_mount_body_height-wall-clearance-endstop_magnet_dia/2])
 			rotate([-90,0,0])
 				cylinder(r=endstop_magnet_dia/2+clearance,h=endstop_magnet_length+1);
 	}
