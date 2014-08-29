@@ -194,20 +194,6 @@ module frame_enclosure_chamber_door(){
 				mirror([0,0,1])
 					cube([3*frame_width,frame_enclosure_thickness+2,3*frame_width]);
 
-			// frame screw holes
-			translate([(frame_extrusion_length_horizontal/2+frame_width)-frame_width/2,-1,(frame_extrusion_length_vertical-frame_width-frame_base_dist)/2-frame_width/2-wall_thin])
-				rotate([-90,0,0])
-					cylinder(r=frame_screw_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
-			translate([(frame_extrusion_length_horizontal/2+frame_width)-frame_width-frame_width/2,-1,(frame_extrusion_length_vertical-frame_width-frame_base_dist)/2-frame_width/2-wall_thin])
-				rotate([-90,0,0])
-					cylinder(r=frame_screw_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
-			translate([(frame_extrusion_length_horizontal/2+frame_width)-frame_width/2,-1,-((frame_extrusion_length_vertical-frame_width-frame_base_dist)/2-frame_width/2)])
-				rotate([-90,0,0])
-					cylinder(r=frame_screw_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
-			translate([(frame_extrusion_length_horizontal/2+frame_width)-frame_width-frame_width/2,-1,-((frame_extrusion_length_vertical-frame_width-frame_base_dist)/2-frame_width/2)])
-				rotate([-90,0,0])
-					cylinder(r=frame_screw_dia/2+clearance_laser,h=frame_enclosure_thickness+2);
-
 			// door handle screw holes
 			translate([wall_thin/2+2*wall+clearance+frame_screw_dia/2,-1,frame_width-2*wall-clearance-frame_screw_dia/2-wall_thin/2])
 				rotate([-90,0,0])

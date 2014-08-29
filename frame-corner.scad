@@ -268,16 +268,6 @@ module frame_corner_door_top(){
 		translate([2*frame_width-wall-clearance,-frame_enclosure_thickness-clearance,-frame_width-1])
 			cube([frame_corner_body_side,frame_corner_body_side,frame_corner_body_height+2]);
 
-		// frame mount screw holes
-		translate([frame_width/2,(frame_corner_body_side+2)/2-frame_enclosure_thickness-clearance-wall-1,-frame_width/2])
-			rotate([0,0,90])
-				rotate([180,0,0])
-					teardrop(frame_screw_dia/2+clearance,frame_corner_body_side+2);
-		translate([frame_width+frame_width/2,(frame_corner_body_side+2)/2-frame_enclosure_thickness-clearance-wall-1,-frame_width/2])
-			rotate([0,0,90])
-				rotate([180,0,0])
-					teardrop(frame_screw_dia/2+clearance,frame_corner_body_side+2);
-
 		// door hinge bolt hole
 		translate([(-frame_enclosure_thickness-clearance-wall)/2,(-frame_enclosure_thickness-clearance-wall)/2,-(frame_enclosure_door_hinge_bolt_length+2*clearance)+frame_enclosure_thickness+clearance+2*wall-wall_thin-wall])
 			cylinder(r=frame_enclosure_door_hinge_bolt_dia/2+clearance,h=frame_enclosure_door_hinge_bolt_length+2*clearance);
@@ -383,14 +373,6 @@ module frame_corner_door_bottom(){
 			cube([frame_corner_body_side,frame_corner_body_side,frame_width]);
 		translate([2*frame_width-wall-clearance,-frame_enclosure_thickness-clearance,-frame_width-1])
 			cube([frame_corner_body_side,frame_corner_body_side,2*frame_width+2]);
-
-		// frame mount screw holes
-		translate([frame_width+frame_width/2,(frame_corner_body_side+2)/2-frame_enclosure_thickness-clearance-wall-1,frame_width/2])
-			rotate([0,0,90])
-				teardrop(frame_screw_dia/2+clearance,frame_corner_body_side+2);
-		translate([frame_width/2,(frame_corner_body_side+2)/2-frame_enclosure_thickness-clearance-wall-1,frame_width/2])
-			rotate([0,0,90])
-				teardrop(frame_screw_dia/2+clearance,frame_corner_body_side+2);
 
 		// door hinge bolt hole
 		translate([(-frame_enclosure_thickness-clearance-wall)/2,(-frame_enclosure_thickness-clearance-wall)/2,-(frame_enclosure_door_hinge_bolt_length+2*clearance)/2])
