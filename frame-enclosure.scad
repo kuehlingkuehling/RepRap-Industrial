@@ -427,7 +427,7 @@ module frame_enclosure_base_back(){
 		}
 
 		// waterpump mount
-		translate([-watercooling_pump_width/2+frame_extrusion_length_horizontal/2-2*frame_width-power_supply_height-frame_width-watercooling_radiator_fan_side-frame_width,0,frame_width+(frame_base_dist-frame_width)/2])
+		translate([-watercooling_pump_width/2+frame_extrusion_length_horizontal/2-2*frame_width-power_supply_height-frame_width-watercooling_radiator_fan_side-3*frame_width,0,frame_width+(frame_base_dist-frame_width)/2])
 			translate([0,0,-watercooling_pump_height/2+watercooling_pump_mount_pos_z])
 				for(h=[0,1])
 					mirror([h,0,0])
