@@ -157,10 +157,6 @@ module z_elevator(){
 					translate([linear_bearing_dia/2+z_rod_dist/2,0,linear_bearing_length-2*wall])
 							teardrop(wall/2,linear_bearing_dia);
 				}
-				translate([(linear_bearing_dia+clearance+wall+1)/2+z_rod_dist/2-linear_bearing_dia/2,-linear_bearing_groove_dia/2-linear_bearing_groove_width/2,z_elevator_body_height-linear_bearing_length+linear_bearing_groove_pos+linear_bearing_groove_width/2])
-						teardrop(linear_bearing_groove_width/2+clearance,linear_bearing_dia+clearance+wall+1);
-				translate([(linear_bearing_dia+clearance+wall+1)/2+z_rod_dist/2-linear_bearing_dia/2,-linear_bearing_groove_dia/2-linear_bearing_groove_width/2,linear_bearing_length-linear_bearing_groove_pos-linear_bearing_groove_width/2])
-						teardrop(linear_bearing_groove_width/2+clearance,linear_bearing_dia+clearance+wall+1);
 
 				// platform frame mount
 				translate([-frame_width_small-2*clearance+z_rod_dist/2-linear_bearing_dia/2-clearance-wall_thin,-(z_elevator_body_length-2*wall+1)+z_elevator_body_length/2-2*wall,wall+clearance])

@@ -122,11 +122,6 @@ module x_end(motor=1){
 			translate([-linear_bearing_dia/2-clearance-wall_thin,x_end_body_length/2-(x_end_body_length-2*linear_bearing_length-2*clearance)/2,-linear_bearing_dia/2-clearance-wall_thin])
 				cube([2*wall_thin,x_end_body_length-2*linear_bearing_length-2*clearance,linear_bearing_dia+2*clearance+2*wall_thin]);
 		}
-		for(j=[1,-1])
-			translate([linear_bearing_groove_dia/2+linear_bearing_groove_width/2,x_end_body_length/2+j*(x_end_body_length/2-linear_bearing_length+linear_bearing_groove_pos+linear_bearing_groove_width/2),(linear_bearing_dia+2*clearance+wall+1)/2-linear_bearing_dia/2-clearance])
-				rotate([0,90,0])
-					rotate([-90,0,0])
-							teardrop(linear_bearing_groove_width/2+clearance,linear_bearing_dia+2*clearance+wall+1);
 		hull(){
 			translate([0,linear_bearing_length-2*wall,x_end_body_height/2])
 				rotate([0,0,90])
