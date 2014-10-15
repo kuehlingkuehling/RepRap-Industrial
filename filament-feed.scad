@@ -75,8 +75,10 @@ module filament_feed(){
 				// filament dust cleaner foam clearance
 				translate([-filament_feed_dust_cleaner_foam_side/2+frame_center_screw_dia/2+clearance+wall_thin+filament_feed_dust_cleaner_foam_side/2,-filament_feed_dust_cleaner_foam_side/2,-1])
 					cube([filament_feed_dust_cleaner_foam_side,filament_feed_dust_cleaner_foam_side,filament_feed_dust_cleaner_foam_side+1]);
+
+				// filament feed-in teflon liner clearance
 				translate([frame_center_screw_dia/2+clearance+wall_thin+filament_feed_dust_cleaner_foam_side/2,0,filament_feed_dust_cleaner_foam_side-clearance])
-					cylinder(r1=filament_dia/2+clearance+wall+clearance,r2=filament_dia/2+clearance,h=wall+clearance);
+					cylinder(r=filament_tube_dia/2,h=3*wall);
 
 				// filament feed sensor clearance
 				translate([frame_center_screw_dia/2+clearance+wall_thin+filament_feed_dust_cleaner_foam_side/2-(filament_dia/2+filament_tolerance/2+clearance),-(filament_dia/2+filament_tolerance/2+clearance),filament_feed_body_height-(filament_feed_quick_connector_countersink+clearance+2*wall)-clearance-filament_feed_sensor_hole_pos-filament_feed_sensor_hole_dist])
