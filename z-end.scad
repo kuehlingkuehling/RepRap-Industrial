@@ -152,6 +152,11 @@ module z_end(top=0){
 			rotate([0,0,90])
 				teardrop(set_collar_screw_hex_wrench_dia/2+wall_thin,z_elevator_body_length);
 
+		// center marking for easier positioning during assembly
+		translate([0,-rod_dia/2-clearance-wall+z_end_body_length-wall/2,z_end_body_height-wall_thin])
+			cylinder(r=wall_thin/2,h=wall);
+		translate([0,-rod_dia/2-clearance-wall+z_end_body_length-wall/2,-wall+wall_thin])
+			cylinder(r=wall_thin/2,h=wall);
 
 		// rod clamps
 		for(i=[0,1])
