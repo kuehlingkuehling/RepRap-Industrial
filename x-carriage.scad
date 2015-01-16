@@ -114,60 +114,34 @@ module x_carriage(){
 						cylinder(r=wall,h=endstop_magnet_length+clearance+wall);
 			}
 
-			// hot end cable feedthrough
-			translate([0,x_rod_dist/2-linear_bearing_dia/2-clearance-wall+(3*wall)/2,-x_carriage_body_height/2-x_carriage_cable_clamp_clearance])
-				difference(){
-					hull(){
-						translate([-x_carriage_body_length/2+linear_bearing_length/2+wall,0,0])
-							rotate([90,0,0])
-								cylinder(r=wall,h=3*wall,center=true);
-						translate([x_carriage_body_length/2-linear_bearing_length/2-wall,0,0])
-							rotate([90,0,0])
-								cylinder(r=wall,h=3*wall,center=true);
-						translate([-x_carriage_body_length/2+linear_bearing_length/2+wall-x_carriage_cable_clamp_clearance-wall,0,x_carriage_cable_clamp_clearance+wall])
-							rotate([90,0,0])
-								cylinder(r=wall,h=3*wall,center=true);
-						translate([x_carriage_body_length/2-linear_bearing_length/2-wall+x_carriage_cable_clamp_clearance+wall,0,x_carriage_cable_clamp_clearance+wall])
-							rotate([90,0,0])
-								cylinder(r=wall,h=3*wall,center=true);
-					}
-					hull(){
-						translate([-x_carriage_body_length/2+linear_bearing_length/2+2*wall,0,wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-						translate([-wall-wall/2,0,wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-						translate([-x_carriage_body_length/2+linear_bearing_length/2+2*wall,0,x_carriage_cable_clamp_clearance-wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-						translate([-wall-wall/2,0,x_carriage_cable_clamp_clearance-wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-					}
-					hull(){
-						translate([x_carriage_body_length/2-linear_bearing_length/2-2*wall,0,wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-						translate([wall+wall/2,0,wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-						translate([x_carriage_body_length/2-linear_bearing_length/2-2*wall,0,x_carriage_cable_clamp_clearance-wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-						translate([wall+wall/2,0,x_carriage_cable_clamp_clearance-wall])
-							rotate([0,0,90])
-								rotate([90,0,0])
-									teardrop(wall,3*wall+2);
-					}
-				}
+			// zip tie slot for hot end cable fixation
+			translate([0,x_rod_dist/2,0])
+				for(i=[0,1])
+					mirror([0,i,0])
+						rotate([-i*90,0,0])
+							translate([0,-linear_bearing_dia/2-clearance-wall+(frame_cable_mount_zip_tie_width+2*wall)/2,-x_carriage_body_height/2])
+								difference(){
+									hull(){
+										translate([-frame_width/2+(frame_cable_mount_zip_tie_thickness+wall_thin),0,0])
+											rotate([0,0,90])
+												rotate([-90,0,0])
+													teardrop(frame_cable_mount_zip_tie_thickness+wall_thin,frame_cable_mount_zip_tie_width+2*wall,fulldrop=1);
+										translate([frame_width/2-(frame_cable_mount_zip_tie_thickness+wall_thin),0,0])
+											rotate([0,0,90])
+												rotate([90,0,0])
+													teardrop(frame_cable_mount_zip_tie_thickness+wall_thin,frame_cable_mount_zip_tie_width+2*wall,fulldrop=1);
+										translate([-frame_width/2+(frame_cable_mount_zip_tie_thickness+wall_thin)-wall,0,wall])
+											rotate([0,0,90])
+												rotate([-90,0,0])
+													teardrop(frame_cable_mount_zip_tie_thickness+wall_thin,frame_cable_mount_zip_tie_width+2*wall,fulldrop=1);
+										translate([frame_width/2-(frame_cable_mount_zip_tie_thickness+wall_thin)+wall,0,wall])
+											rotate([0,0,90])
+												rotate([90,0,0])
+													teardrop(frame_cable_mount_zip_tie_thickness+wall_thin,frame_cable_mount_zip_tie_width+2*wall,fulldrop=1);
+									}
+									translate([-x_carriage_body_length/2,-frame_cable_mount_zip_tie_width/2,-frame_cable_mount_zip_tie_thickness])
+										cube([x_carriage_body_length,frame_cable_mount_zip_tie_width,frame_cable_mount_zip_tie_thickness]);
+								}
 		}
 
 		// endstop magnet countersink

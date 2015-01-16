@@ -137,6 +137,8 @@ frame_extrusion_length_vertical = frame_width+frame_base_dist+frame_width+frame_
 frame_angle_side = 28;					// aluminum angles for t-slot
 frame_door_handle_finger_clearance = 15;
 frame_door_lock_magnet_dia = 8;
+frame_cable_mount_zip_tie_width = 5.4;		// maximum zip tie width acceptance
+frame_cable_mount_zip_tie_thickness = 2;		// maximum zip tie thickness acceptance
 
 belt_width = 6;						// T2.5 belt, 6mm width
 belt_thickness_min = 1;			// for T5: 1; for T2.5: 0.6
@@ -285,8 +287,6 @@ extruder_cablechain_mount_screw_dia = m4_screw_dia;
 extruder_cablechain_mount_screw_head_flange_dia = m4_screw_head_flange_dia;
 extruder_cablechain_mount_screw_nut_height = m4_nut_height;
 extruder_cablechain_mount_screw_nut_wrench = m4_nut_wrench;
-
-x_carriage_cable_clamp_clearance = 8;
 
 // IGUS chain 200.03.075.0
 x_cablechain_mount_screw_dia = m6_screw_dia;
