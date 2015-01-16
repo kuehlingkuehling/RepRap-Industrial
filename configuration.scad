@@ -53,6 +53,8 @@ m4_nut_wrench = 7;				// M4
 m4_nut_height = 3.2;				// M4
 m4_locknut_height = 5;			// M4 locknut
 m4_hex_wrench_dia = 3.5;			// allen key diameter
+m4_flat_knurled_nut_dia = 16;
+m4_flat_knurled_nut_height = 4;
 
 m6_screw_dia = 6;
 m6_nut_wrench = 10;
@@ -150,8 +152,11 @@ belt_tensioning_screw_head_length = m4_screw_head_length;
 belt_tensioning_screw_length = 50;
 belt_tensioning_washer_dia = m4_washer_dia;
 belt_tensioning_washer_thickness = m4_washer_thickness;
-belt_tensioning_nut_wrench = m4_nut_wrench;
-belt_tensioning_nut_height = m4_nut_height;
+belt_tensioning_nut_wrench = m4_nut_wrench;		// DEPRECATED in rev. 1.2.0, left for compatibility reasons
+belt_tensioning_nut_height = m4_nut_height;		// DEPRECATED in rev. 1.2.0, left for compatibility reasons
+belt_tensioning_knurled_nut_dia = m4_flat_knurled_nut_dia;
+belt_tensioning_knurled_nut_height = m4_flat_knurled_nut_height;
+
 belt_width_clearance = 0.5;
 belt_pulley_retainer_width = 1;
 

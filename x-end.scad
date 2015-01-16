@@ -266,14 +266,14 @@ module x_end(motor=1){
 		// y belt tensioner
 		difference(){
 			translate([y_rod_y_belt_x_dist,x_end_body_length-belt_tensioner_length-belt_tensioning_range,y_rod_y_belt_arbor_dist-y_belt_pulley_dia/2]){
-				translate([0,-(belt_tensioning_range+2*wall+belt_tensioning_nut_height+2*clearance),0])
+				translate([0,-(belt_tensioning_range-1+2*wall+belt_tensioning_knurled_nut_height),0])
 					rotate([-90,0,0])
-						cylinder(r=belt_tensioning_screw_dia/2+clearance,belt_tensioning_range+2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance+1);
-				translate([0,-(2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance),0])
+						cylinder(r=belt_tensioning_screw_dia/2+clearance,h=belt_tensioning_range+2*wall+belt_tensioning_knurled_nut_height+1);
+				translate([0,-(2*wall+belt_tensioning_knurled_nut_height+wall_thin),0])
 					rotate([-90,0,0])
-						cylinder(r=cornerdiameter(belt_tensioning_nut_wrench+2*clearance)/2+wall+wall_thin,h=belt_tensioning_nut_height+2*clearance+wall_thin+clearance);
-				translate([0,-(2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance),-((cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance)/2)])
-						cube([cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance,belt_tensioning_nut_height+2*clearance+wall_thin+clearance,(cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+2*clearance)]);
+						cylinder(r=belt_tensioning_knurled_nut_dia/2+wall_thin,h=belt_tensioning_knurled_nut_height+wall_thin);
+				translate([0,-(2*wall+belt_tensioning_knurled_nut_height+wall_thin),-(belt_tensioning_knurled_nut_dia+2*wall_thin)/2])
+						cube([belt_tensioning_knurled_nut_dia+2*wall_thin,belt_tensioning_knurled_nut_height+wall_thin,belt_tensioning_knurled_nut_dia+2*wall_thin]);
 			}
 			if(support) intersection(){
 				translate([x_end_body_width_motor_addition+x_end_body_width-linear_bearing_dia/2-clearance-wall_thin-clearance-nema17_screw_hex_wrench_dia/2-nema17_screw_dia/2-clearance-wall-wall,-2,linear_bearing_dia/2+clearance])

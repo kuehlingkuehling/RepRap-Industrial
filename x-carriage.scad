@@ -276,11 +276,9 @@ module x_carriage(){
 			difference(){
 				translate([x_carriage_body_length/2-(belt_tensioner_length+belt_tensioning_range/2),x_belt_pulley_dia/2,0])
 						rotate([180,0,0]) rotate([0,0,-90]){
-							translate([0,-(2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance),0])
+							translate([0,-(2*wall+belt_tensioning_knurled_nut_height+wall_thin),0])
 								rotate([-90,0,0])
-									cylinder(r=cornerdiameter(belt_tensioning_nut_wrench+2*clearance)/2+wall+2*clearance,h=belt_tensioning_nut_height+2*clearance+wall_thin+clearance);
-							translate([-((cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance)/2),-(2*wall+belt_tensioning_nut_height+2*clearance+wall_thin+clearance),0])
-								cube([cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+4*clearance,belt_tensioning_nut_height+2*clearance+wall_thin+clearance,(cornerdiameter(belt_tensioning_nut_wrench+2*clearance)+2*wall+2*clearance)]);
+									cylinder(r=belt_tensioning_knurled_nut_dia/2+wall_thin,h=belt_tensioning_knurled_nut_height+wall_thin);
 						}
 				if(support) intersection(){
 					translate([-x_carriage_body_length/2-1,x_belt_pulley_dia/2-belt_tensioning_screw_dia/2-clearance-2*wall,-(belt_tensioning_screw_dia/2+clearance)-2*wall])
