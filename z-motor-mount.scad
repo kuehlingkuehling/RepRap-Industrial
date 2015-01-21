@@ -77,11 +77,11 @@ module z_motor_mount(){
 			translate([0,-frame_width,0])
 			hull(){
 				translate([0,frame_width/2-z_motor_mount_body_length/2,-1])
-					cylinder(r=z_belt_pulley_dia/2+wall_thin,h=z_motor_mount_body_height-2*wall+1);
+					cylinder(r=z_belt_pulley_dia/2+2*wall_thin,h=z_motor_mount_body_height-2*wall+1);
 				translate([-z_motor_mount_body_width,frame_width/2-z_motor_mount_body_length/2,-1])
-					cylinder(r=z_belt_pulley_dia/2+wall_thin,h=z_motor_mount_body_height-2*wall+1);
+					cylinder(r=z_belt_pulley_dia/2+2*wall_thin,h=z_motor_mount_body_height-2*wall+1);
 				translate([-z_motor_mount_body_width,frame_width/2-z_motor_mount_body_length/2+2*(nema17_width/2-(z_belt_pulley_dia/2+wall_thin)),-1])
-					cylinder(r=z_belt_pulley_dia/2+wall_thin,h=z_motor_mount_body_height-2*wall+1);
+					cylinder(r=z_belt_pulley_dia/2+2*wall_thin,h=z_motor_mount_body_height-2*wall+1);
 			}
 	
 			// frame mount holes
