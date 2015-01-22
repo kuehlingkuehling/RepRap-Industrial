@@ -584,7 +584,7 @@ air_heater_mosfetboard_mount_body_length = 2*frame_width;
 
 y_motor_mount_body_width = nema17_length*0.75;
 y_motor_mount_body_length = 2*wall+nema17_width+wall;
-y_motor_mount_body_height = wall+nema17_width+2*wall+frame_width;
+y_motor_mount_body_height = nema17_width+2*wall+wall+frame_width;
 
 filament_feed_body_length = wall+wall_thin+filament_feed_dust_cleaner_foam_side+wall_thin+wall;
 filament_feed_body_width = 2*(frame_center_screw_dia/2+clearance+wall_thin+filament_feed_dust_cleaner_foam_side+wall);
