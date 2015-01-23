@@ -303,6 +303,19 @@ module x_carriage(){
 			rotate([0,-90,0])
 				rotate([90,0,0])
 					nut_slot_square(extruder_mount_screw_nut_wrench,extruder_mount_screw_nut_height,nema17_width);
+
+		// hot end water cooler clearance
+		for(i=[-1,1])
+			translate([i*(extruder_front_body_width/2+extruder_drivegear_dia/2-extruder_drivegear_filament_insection+filament_dia/2+extruder_hotend_heatsink_width/2+extruder_hotend_heatsink_watercooler_thickness/2),-x_carriage_body_width/2,extruder_back_body_height/2-extruder_front_body_height])
+			hull(){
+				translate([wall_thin/2,0,0])
+					rotate([0,90,0])
+						teardrop(extruder_hotend_heatsink_watercooler_steelball_dia/2+clearance,x_carriage_body_height,fulldrop=1);
+				translate([-wall_thin/2,0,0])
+					rotate([0,90,0])
+						rotate([180,0,0])
+							teardrop(extruder_hotend_heatsink_watercooler_steelball_dia/2+clearance,x_carriage_body_height,fulldrop=1);
+			}
 	}
 
 	if(support) mirror([0,1,0]){
