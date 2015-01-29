@@ -338,12 +338,12 @@ y_belt_pulley_dia = 27.8007;		// pulley outer diameter, get from ECHO in paramet
 x_belt_pulley_dia = 27.8007;		// pulley outer diameter, get from ECHO in parametric_pulleys.scad; T5: 27.8007; T2.5: 25.7363
 z_belt_pulley_dia = 27.8007;		// pulley outer diameter, get from ECHO in parametric_pulleys.scad; T5: 27.8007; T2.5: 25.7363
 
-controller_touchscreen_width = 257;
-controller_touchscreen_height = 170;
-controller_touchscreen_cornerradius = 12;
+controller_touchscreen_width = 269.37;
+controller_touchscreen_height = 171.97;
+controller_touchscreen_cornerradius = 11.3;
 controller_touchscreen_glassthickness = 1;
 controller_touchscreen_thickness = 11.5;
-controller_touchscreen_glasssideclearance_bottom = 5;
+controller_touchscreen_glasssideclearance_bottom = 10;
 controller_touchscreen_glasssideclearance_top = 10;
 controller_touchscreen_glasssideclearance_side = 10;
 controller_touchscreen_connector_clearance_width = 40;
