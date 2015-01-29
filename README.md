@@ -12,7 +12,7 @@ as soon as they are finished.
 
 ## Current Revision
 
-1.2.0
+1.3.0-dev
 
 ## License
 
