@@ -10,9 +10,9 @@ All information about the machine, build instructions and such will be published
 [http://kuehlingkuehling.de](http://kuehlingkuehling.de)
 as soon as they are finished.
 
-## Current Version
+## Current Revision
 
-1.2.0-dev
+1.2.0
 
 ## License
 
