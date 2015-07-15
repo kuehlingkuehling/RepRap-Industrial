@@ -178,8 +178,9 @@ bed_siliconeheater_thickness = 3;
 bed_siliconeheater_side = 210;
 bed_surface_thickness = 1.5;		// PEI carbon fabric composite
 bed_surface_side = 210;
-bed_clamp_width = 9.5;				// foldback clamps 25mm, max. clamp width 9mm
+bed_clamp_width = 12;				// foldback clamps 25mm, max. clamp width 9mm
 bed_clamp_length = 25;				// foldback clamps 25mm, max. clamp width 9mm
+bed_clamp_maxclampwidth = 12;
 bed_clamp_angle_thickness = 3.5;
 bed_clamp_angle_length = 14;
 bed_leveling_mount_dia = 10;		// cylindrical glueing surfaces diameter for bonding to the aluminum sandwich
@@ -444,6 +445,21 @@ wiper_brush_shaft_dia = 3.15;
 set_collar_body_dia = 22.4;			// diameter incl. clearance for screw head when rotating
 set_collar_body_height = 9;
 set_collar_screw_pos_radius = 6.5;
+
+wiper_bin_dia = 60;     // beaker glass high type, DIN 12331, ISO 3819
+wiper_bin_dia_clampreduction = 0.5;
+wiper_bin_edge_dia = 67;
+wiper_bin_edge_height = 10;
+wiper_bin_clearance_angle = 150;
+wiper_bin_wallthickness = 2;
+wiper_width = 25;       // silicone wiping element
+wiper_thickness = 5;    // silicone wiping element
+wiper_height = 30;      // silicone wiping element
+wiper_excess_height = 15;
+wiper_compression = 0.5;
+wiper_bin_holder_height = 6;
+wiper_bin_holder_width = 6;
+wiper_bin_ypos = -10;
 
 
 

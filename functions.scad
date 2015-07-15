@@ -174,6 +174,33 @@ module nut_slot_square(nut_wrench_size,nut_height, nut_elevation,vertical=0, cle
 
 //nut_slot_square(5.5,3,4,1);
 
+module pie_slice(radius,angle,height){
+    translate([0,0,-height/2])
+        linear_extrude(height=height){
+            if(angle<=180)
+                hull(){
+                    if(angle>=1)
+                        for(i=[0:(floor(abs(angle))-1)])
+                            polygon(points=[[0,0],[radius*cos(i),radius*sin(i)],[radius*cos(i+1),radius*sin(i+1)]]);
+                    polygon(points=[[0,0],[radius*cos(floor(abs(angle))),radius*sin(floor(abs(angle)))],[radius*cos(angle),radius*sin(angle)]]);
+                }
+            else
+                union(){
+                    hull()
+                        for(i=[0:(180-1)])
+                            polygon(points=[[0,0],[radius*cos(i),radius*sin(i)],[radius*cos(i+1),radius*sin(i+1)]]);
+                    hull(){
+                        if(angle>=181)
+                            for(i=[180:(floor(abs(angle))-1)])
+                                polygon(points=[[0,0],[radius*cos(i),radius*sin(i)],[radius*cos(i+1),radius*sin(i+1)]]);
+                        polygon(points=[[0,0],[radius*cos(floor(abs(angle))),radius*sin(floor(abs(angle)))],[radius*cos(angle),radius*sin(angle)]]);
+                    }
+                }
+        }
+}
+
+// pie_slice(30,271,5);
+
 function cornerdiameter(wrench_size) =  2* ((wrench_size)/2)/ cos(180/6);
 function cornerdiameter_8(wrench_size) =  2* ((wrench_size)/2)/ cos(180/8);
 function cornerdiameter_4(wrench_size) =  2* ((wrench_size)/2)/ cos(180/4);
