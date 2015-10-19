@@ -52,7 +52,7 @@ module bed_leveling_mount(){
 								translate([bed_leveling_mount_dia/2-wall,-bed_leveling_mount_dia/2+wall,0])
 									cylinder(r=wall,h=wall+clearance+bed_leveling_rod_end_bearing_screw_dia+clearance+wall);
 							}
-							cylinder(r=bed_leveling_mount_dia/2,h=bed_leveling_mount_body_height-bed_heatbed_bottom_clearance);
+							cylinder(r=bed_leveling_mount_dia/2,h=bed_leveling_mount_body_height-bed_siliconeheater_thickness);
 						}
 			for(i=[0:2])
 				rotate([0,0,i*120])
