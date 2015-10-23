@@ -23,7 +23,12 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([90,0,0]) extruder_back();
+rotate([90,0,0]) 
+    difference(){
+        extruder_back();
+        translate([0,extruder_back_body_length/2,0])
+            label("38",orientation="bottom");
+    }
 
 
 

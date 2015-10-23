@@ -201,6 +201,40 @@ module pie_slice(radius,angle,height){
 
 // pie_slice(30,271,5);
 
+module label(text,orientation="top",font=IDfonttype,size=IDfontsize){
+    if(orientation=="top")
+        translate([0,0,-0.5])
+            linear_extrude(height=1)
+                text(text,font=font,size=size,halign="center",valign="center");
+    if(orientation=="bottom")
+        rotate([0,180,0])
+            translate([0,0,-0.5])
+                linear_extrude(height=1)
+                    text(text,font=font,size=size,halign="center",valign="center");
+    if(orientation=="front")
+        rotate([90,0,0])
+            translate([0,0,-0.5])
+                linear_extrude(height=1)
+                    text(text,font=font,size=size,halign="center",valign="center");
+    if(orientation=="back")
+        rotate([90,0,180])
+            translate([0,0,-0.5])
+                linear_extrude(height=1)
+                    text(text,font=font,size=size,halign="center",valign="center");
+    if(orientation=="left")
+        rotate([90,0,-90])
+            translate([0,0,-0.5])
+                linear_extrude(height=1)
+                    text(text,font=font,size=size,halign="center",valign="center");
+    if(orientation=="right")
+        rotate([90,0,90])
+            translate([0,0,-0.5])
+                linear_extrude(height=1)
+                    text(text,font=font,size=size,halign="center",valign="center");
+}
+
+// label("ID453",orientation="bottom");
+
 function cornerdiameter(wrench_size) =  2* ((wrench_size)/2)/ cos(180/6);
 function cornerdiameter_8(wrench_size) =  2* ((wrench_size)/2)/ cos(180/8);
 function cornerdiameter_4(wrench_size) =  2* ((wrench_size)/2)/ cos(180/4);

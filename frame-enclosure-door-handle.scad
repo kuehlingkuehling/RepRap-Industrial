@@ -26,7 +26,12 @@ include <configuration.scad>
 // RENDERING
 
 // 2x
-rotate([0,90,0]) frame_enclosure_door_handle();
+rotate([0,90,0])
+    difference(){
+        frame_enclosure_door_handle();
+        translate([-frame_enclosure_door_handle_body_width/2,-frame_enclosure_door_handle_body_length+2*wall,0])
+            label("13",orientation="back");
+    }
 
 
 

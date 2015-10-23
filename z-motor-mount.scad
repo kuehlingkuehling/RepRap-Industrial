@@ -25,8 +25,12 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([180,0,0]) z_motor_mount();
-
+rotate([180,0,0]) 
+    difference(){
+        z_motor_mount();
+        translate([0,0,0])
+            label("33",orientation="bottom");
+    }
 
 
 

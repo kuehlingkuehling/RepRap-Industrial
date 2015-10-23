@@ -25,7 +25,11 @@ include <configuration.scad>
 
 
 // RENDERING
-frame_small_mount();
+difference(){
+	frame_small_mount();
+    translate([0,-frame_center_screw_head_length-clearance-wall,frame_small_mount_body_height/4])
+        label("14",orientation="front");
+}
 
 
 

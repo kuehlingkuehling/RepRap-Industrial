@@ -21,20 +21,28 @@ License:
 include <configuration.scad>
 
 
-
-
-
 // RENDERING
 
 // FAN DUCT
-* air_filter_fan_duct();
+* difference(){
+    air_filter_fan_duct();
+    translate([0,-air_filter_fan_duct_body_length/4,0])
+        label("41",orientation="bottom");
+}
 
 // ACTIVATED CARBON CONTAINER
-* air_filter_activatedcarbon_container();
+* difference(){
+    air_filter_activatedcarbon_container();
+    translate([0,-air_filter_activatedcarbon_container_body_length/2+wall,air_filter_activatedcarbon_container_body_height/4*3])
+        label("20",orientation="back");
+}
 
 // ACTIVATED CARBON CONTAINER LID
-* air_filter_activatedcarbon_container_lid();
-
+* difference(){
+    air_filter_activatedcarbon_container_lid();
+    translate([-air_filter_activatedcarbon_container_body_width/2+wall_thin+clearance,0,wall/2])
+        label("18",orientation="left");
+}
 
 
 

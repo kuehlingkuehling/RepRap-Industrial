@@ -23,7 +23,12 @@ include <configuration.scad>
 
 
 // RENDER X CARRIAGE
-rotate([0,-90,0]) x_carriage();
+rotate([0,-90,0])
+    difference(){
+        x_carriage();
+        translate([0,0,x_carriage_body_height/2-2*wall])
+            label("72",orientation="bottom");
+    }
 
 
 module x_carriage(){

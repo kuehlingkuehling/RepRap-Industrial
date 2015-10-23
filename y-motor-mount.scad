@@ -24,7 +24,12 @@ include <configuration.scad>
 
 
 // RENDER
-rotate([0,-90,0]) y_motor_mount();
+rotate([0,-90,0])
+    difference(){
+        y_motor_mount();
+        translate([0,-(y_motor_mount_body_length-frame_width)/2,0])
+            label("2",orientation="left");
+    }
 
 
 

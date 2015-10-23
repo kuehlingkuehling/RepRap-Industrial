@@ -66,7 +66,8 @@ clearance_shaft = clearance_tight;
 
 
 // PULLEY 608 BEARING - X BELT IDLER, Y BELT IDLER FRONT
-*	union(){
+difference(){
+	union(){
 		render_pulley(
 			teeth = x_belt_pulley_teeth,
 			profile = 6,
@@ -92,6 +93,10 @@ clearance_shaft = clearance_tight;
 				cylinder(r=(bearing_dia+clearance)/2-wall_thin,h=wall_thin+2);
 		}
 	}
+    translate([0,bearing_dia/2+clearance,wall_thin+wall_thin/2+belt_width/2])
+        label("65",orientation="front");
+}
+
 
 
 

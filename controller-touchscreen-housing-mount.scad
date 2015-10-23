@@ -25,7 +25,12 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([0,90,0]) controller_touchscreen_housing_mount();
+rotate([0,90,0]) 
+    difference(){
+        controller_touchscreen_housing_mount();
+        translate([0,-controller_touchscreen_housing_mount_body_length/2,-controller_touchscreen_housing_mount_body_side/2])
+            label("30",orientation="bottom");
+    }
 
 
 

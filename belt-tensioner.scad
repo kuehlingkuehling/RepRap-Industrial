@@ -24,25 +24,20 @@ include <configuration.scad>
 
 // Y RIGHT SIDE, X CARRIAGE
 * difference(){
-	belt_tensioner();
-	translate([belt_tensioner_width/2-wall_thin/2,wall,belt_tensioner_height/2-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/R.dxf");
+    belt_tensioner();
+    translate([0,belt_tensioner_length/2,0])
+        label("17",orientation="bottom");
 }
 
 // Y LEFT SIDE
-* difference(){
-	mirror([1,0,0]) belt_tensioner();
-	translate([belt_tensioner_width/2-wall_thin/2,wall,belt_tensioner_height/2-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/L.dxf");
-}
+* mirror([1,0,0])
+    difference(){
+        belt_tensioner();
+        mirror([1,0,0])
+            translate([0,belt_tensioner_length/2,0])
+                label("75",orientation="bottom");
+    }
+
 
 
 

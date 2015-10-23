@@ -25,7 +25,12 @@ include <configuration.scad>
 
 
 // RENDERING
-frame_enclosure_angle();
+difference(){
+	frame_enclosure_angle();
+    translate([frame_enclosure_angle_body_width/2,frame_enclosure_angle_body_length/2,-frame_enclosure_angle_body_height/2])
+        label("46",orientation="right");
+}
+
 
 
 

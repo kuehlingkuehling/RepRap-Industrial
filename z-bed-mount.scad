@@ -25,7 +25,11 @@ include <configuration.scad>
 
 
 // RENDERING
-z_bed_mount();
+difference(){
+    z_bed_mount();
+    translate([0,wall,0])
+        label("26",orientation="back");
+}
 
 
 echo("z_bed_bolt_radius",z_bed_bolt_radius);

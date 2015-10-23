@@ -25,8 +25,12 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([90,0,0]) controller_ethernet_coupling_panel();
-
+rotate([90,0,0])
+    difference(){
+        controller_ethernet_coupling_panel();
+        translate([0,frame_enclosure_thickness+controller_ethernet_coupling_panel_body_length/2,0])
+            label("29",orientation="bottom");
+    }
 
 
 

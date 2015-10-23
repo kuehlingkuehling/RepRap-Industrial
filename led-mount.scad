@@ -26,28 +26,20 @@ include <configuration.scad>
 // RENDER
 
 // RIGHT
-* difference(){
-	rotate([180,0,0]) led_mount();
-	translate([-3*wall,-wall_thin/2,-led_mount_body_height+3*wall])
-		rotate([0,180,0])
-			rotate([0,0,180])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/R.dxf");
-}
+* rotate([180,0,0])
+    difference(){
+        led_mount();
+        translate([frame_width/4,0,led_mount_body_height-(wall_thin+clearance+frame_screw_head_flange_dia+clearance+wall_thin)/2])
+            label("290",orientation="front");
+    }
 
 // LEFT
-* difference(){
-	rotate([180,0,0]) mirror([1,0,0]) led_mount();
-	translate([-3*wall,-wall_thin/2,-led_mount_body_height+3*wall])
-		rotate([0,180,0])
-			rotate([0,0,180])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/L.dxf");
-}
+* rotate([180,0,0]) mirror([1,0,0])
+    difference(){
+        led_mount();
+        translate([frame_width/4,0,led_mount_body_height-(wall_thin+clearance+frame_screw_head_flange_dia+clearance+wall_thin)/2])
+            mirror([1,0,0]) label("289",orientation="front");
+    }
 
 
 

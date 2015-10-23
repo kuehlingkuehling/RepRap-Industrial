@@ -23,7 +23,11 @@ include <configuration.scad>
 
 
 // RENDERING
-spool_mount_endcap();
+difference(){
+	spool_mount_endcap();
+    translate([0,0,spool_mount_endcap_body_height/4])
+        label("27",orientation="back");
+}
 
 
 

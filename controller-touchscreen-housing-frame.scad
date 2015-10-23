@@ -24,7 +24,11 @@ include <configuration.scad>
 
 
 // RENDERING
-controller_touchscreen_housing_frame();
+difference(){
+    controller_touchscreen_housing_frame();
+    translate([0,controller_touchscreen_housing_body_height/2-controller_touchscreen_glasssideclearance_top/2,controller_touchscreen_housing_body_length])
+        label("50",orientation="top");
+}
 
 
 

@@ -26,7 +26,12 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([-90,0,0]) y_endstop_magnet_mount();
+rotate([-90,0,0]) 
+    difference(){
+        y_endstop_magnet_mount();
+        translate([y_endstop_magnet_mount_body_width/4,0,0])
+            label("268",orientation="bottom");
+    }
 
 
 

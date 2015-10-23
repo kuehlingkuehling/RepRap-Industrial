@@ -25,7 +25,12 @@ include <configuration.scad>
 
 
 // RENDERING
-rotate([0,180,0]) filament_feed();
+rotate([0,180,0])
+    difference(){
+        filament_feed();
+        translate([0,0,0])
+            label("264",orientation="bottom");
+    }
 
 
 

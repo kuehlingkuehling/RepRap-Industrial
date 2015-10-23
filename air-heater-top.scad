@@ -23,8 +23,12 @@ include <configuration.scad>
 
 
 // RENDER FOR PRINTING
-rotate([0,180,0]) air_heater_top();
-
+rotate([0,180,0]) 
+difference(){
+    air_heater_top();
+    translate([0,-air_heater_top_body_length+wall_thin+wall,-(air_heater_top_body_height+air_heater_heating_insert_top_clearance)])
+        label("66.",orientation="back");
+}
 
 
 module air_heater_top(){

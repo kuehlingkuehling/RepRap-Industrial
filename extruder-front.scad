@@ -24,11 +24,16 @@ include <configuration.scad>
 
 // RENDER EXTRUDER
 rotate([90,0,0])
-	union(){
-		translate([extruder_front_body_width/2,0,0])
-			extruder_front();
-		translate([-extruder_front_body_width/2,0,0]) mirror([1,0,0]) extruder_front();
-	}
+    difference(){
+       	union(){
+            translate([extruder_front_body_width/2,0,0])
+                extruder_front();
+            translate([-extruder_front_body_width/2,0,0]) mirror([1,0,0]) extruder_front();
+        }
+        translate([0,0,(extruder_back_body_height/8*3)])
+            label("22",orientation="back");
+    }
+
 
 
 // DEBUG

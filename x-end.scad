@@ -26,27 +26,27 @@ include <configuration.scad>
 
 
 // X-END MOTOR
-* difference(){
-	rotate([90,0,0]) x_end(motor=1);
-	translate([0,x_end_body_height/2,x_end_body_length-wall_thin/2])
-		rotate([0,0,180])
-			resize(newsize=[0,2*wall,0],auto=[true,true,false])
-				linear_extrude(height=wall_thin)
-					import("lib/L.dxf");
-}
+* rotate([90,0,0])
+    difference(){
+        x_end(motor=1);
+        translate([0,x_end_body_length,-x_end_body_height/2])
+            label("76",orientation="back");
+    }
 
 // X-END IDLER
-* difference(){
-	rotate([90,0,0]) mirror([1,0,0]) x_end(motor=0);
-	translate([0,x_end_body_height/2,x_end_body_length-wall_thin/2])
-		rotate([0,0,180])
-			resize(newsize=[0,2*wall,0],auto=[true,true,false])
-				linear_extrude(height=wall_thin)
-					import("lib/R.dxf");
-}
+* rotate([90,0,0]) mirror([1,0,0])
+    difference(){
+        x_end(motor=0);
+        translate([0,x_end_body_length,-x_end_body_height/2])
+            mirror([1,0,0]) label("51",orientation="back");
+    }
 
 // X-IDLER SHAFT (2x)
-* x_idler_shaft();
+* difference(){
+    x_idler_shaft();
+    translate([0,-(x_idler_bolt_dia/2+clearance)-((bearing_center_dia/2-clearance_tight+wall_thin)-(x_idler_bolt_dia/2+clearance))/2,0])
+        label("59",orientation="bottom",size=3);
+}
 
 
 

@@ -26,10 +26,20 @@ include <configuration.scad>
 // RENDER
 
 // FRONT
-* rotate([-90,0,0]) cablechain_mount_y_frame(back=0);
+* rotate([-90,0,0])
+    difference(){
+        cablechain_mount_y_frame(back=0);
+        translate([0,-cablechain_mount_y_frame_body_length/4,0])
+            label("42",orientation="left");
+    }
 
 // BACK
-* rotate([-90,0,0]) cablechain_mount_y_frame(back=1);
+* rotate([-90,0,0])
+    difference(){
+        cablechain_mount_y_frame(back=1);
+        translate([0,0,0])
+            label("56",orientation="left");
+    }
 
 
 

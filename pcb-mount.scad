@@ -27,72 +27,36 @@ include <configuration.scad>
 // RENDERING
 
 // BEAGLEBONE BLACK LEFT
-* difference(){
-	rotate([0,-90,0]) pcb_mount(controller_beagleboneblack_height,controller_beagleboneblack_hole_left_bottom_pos_z,controller_beagleboneblack_hole_left_top_pos_z,controller_beagleboneblack_screw_dia,controller_beagleboneblack_screw_nut_height,controller_beagleboneblack_screw_nut_wrench);
-	translate([-wall_thin/2,2*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/1.dxf");
-	translate([-wall_thin/2,4*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/L.dxf");
-}
+* rotate([0,-90,0])
+    difference(){
+        pcb_mount(controller_beagleboneblack_height,controller_beagleboneblack_hole_left_bottom_pos_z,controller_beagleboneblack_hole_left_top_pos_z,controller_beagleboneblack_screw_dia,controller_beagleboneblack_screw_nut_height,controller_beagleboneblack_screw_nut_wrench);
+        translate([pcb_mount_body_width/2,0,wall])
+            label("12",orientation="right");
+    }
 
 // BEAGLEBONE BLACK RIGHT
-* difference(){
-	rotate([0,-90,0]) pcb_mount(controller_beagleboneblack_height,controller_beagleboneblack_hole_right_bottom_pos_z,controller_beagleboneblack_hole_right_top_pos_z,controller_beagleboneblack_screw_dia,controller_beagleboneblack_screw_nut_height,controller_beagleboneblack_screw_nut_wrench);
-	translate([-wall_thin/2,2*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/1.dxf");
-	translate([-wall_thin/2,4*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/R.dxf");
-}
+* rotate([0,-90,0])
+    difference(){
+        pcb_mount(controller_beagleboneblack_height,controller_beagleboneblack_hole_right_bottom_pos_z,controller_beagleboneblack_hole_right_top_pos_z,controller_beagleboneblack_screw_dia,controller_beagleboneblack_screw_nut_height,controller_beagleboneblack_screw_nut_wrench);
+        translate([pcb_mount_body_width/2,0,wall])
+            label("6.",orientation="right");
+    }
 
 // RUMBA LEFT
-* difference(){
-	rotate([0,-90,0]) pcb_mount(mainboard_height,mainboard_hole_left_bottom_pos_z,mainboard_hole_left_top_pos_z,mainboard_screw_dia,mainboard_screw_nut_height,mainboard_screw_nut_wrench);
-	translate([-wall_thin/2,2*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/2.dxf");
-	translate([-wall_thin/2,4*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/L.dxf");
-}
+* rotate([0,-90,0])
+    difference(){
+        pcb_mount(mainboard_height,mainboard_hole_left_bottom_pos_z,mainboard_hole_left_top_pos_z,mainboard_screw_dia,mainboard_screw_nut_height,mainboard_screw_nut_wrench);
+        translate([pcb_mount_body_width/2,0,wall])
+            label("25",orientation="right");
+    }
 
 // RUMBA RIGHT
-* difference(){
-	rotate([0,-90,0]) pcb_mount(mainboard_height,mainboard_hole_right_bottom_pos_z,mainboard_hole_right_top_pos_z,mainboard_screw_dia,mainboard_screw_nut_height,mainboard_screw_nut_wrench);
-	translate([-wall_thin/2,2*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/2.dxf");
-	translate([-wall_thin/2,4*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/R.dxf");
-}
+* rotate([0,-90,0])
+    difference(){
+        pcb_mount(mainboard_height,mainboard_hole_right_bottom_pos_z,mainboard_hole_right_top_pos_z,mainboard_screw_dia,mainboard_screw_nut_height,mainboard_screw_nut_wrench);
+        translate([pcb_mount_body_width/2,0,wall])
+            label("44",orientation="right");
+    }
 
 
 

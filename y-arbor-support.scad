@@ -26,10 +26,20 @@ include <configuration.scad>
 // RENDERING
 
 // Y ARBOR SUPPORT TOP
-* rotate([90,0,0]) y_arbor_support(top=1);
+* rotate([90,0,0])
+    difference(){
+        y_arbor_support(top=1);
+        translate([0,0,y_arbor_support_body_height])
+            label("307",orientation="top");
+    }
 
 // Y ARBOR SUPPORT BOTTOM
-* rotate([90,0,0]) y_arbor_support(top=0);
+* rotate([90,0,0])
+    difference(){
+        y_arbor_support(top=0);
+        translate([0,frame_width/4,0])
+            label("308",orientation="bottom");
+    }
 
 
 

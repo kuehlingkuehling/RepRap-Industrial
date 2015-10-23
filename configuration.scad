@@ -461,7 +461,8 @@ wiper_bin_holder_height = 6;
 wiper_bin_holder_width = 6;
 wiper_bin_ypos = -10;
 
-
+IDfonttype = "DIN 1451 Mittelschrift";
+IDfontsize = 4;
 
 
 ///// CALCULATIONS //////////////////////////////////

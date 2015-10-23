@@ -25,7 +25,11 @@ include <configuration.scad>
 
 
 // RENDER
-bed_leveling_mount();
+difference(){
+    bed_leveling_mount();
+    translate([0,0,wall_thin])
+        label("351",orientation="top");
+}
 
 
 

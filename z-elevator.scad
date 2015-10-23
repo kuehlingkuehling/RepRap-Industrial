@@ -25,7 +25,11 @@ include <configuration.scad>
 
 
 // RENDERING
-z_elevator();
+difference(){
+    z_elevator();
+    translate([z_elevator_body_width/4,0,0])
+        label("39",orientation="bottom");
+}
 
 
 

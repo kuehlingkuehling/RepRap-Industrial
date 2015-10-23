@@ -26,126 +26,81 @@ include <configuration.scad>
 
 // TOP FRONT LEFT
 * difference(){
-	rotate([180,0,0]) frame_corner(hinge=1);
-	translate([2*wall,-frame_width-frame_width/2-wall,-wall_thin/2])
-		resize(newsize=[0,2*wall,0],auto=[true,true,false])
-			linear_extrude(height=wall_thin)
-				import("lib/L.dxf");
+    rotate([180,0,0])
+        frame_corner(hinge=1);
+	translate([frame_width/2,-frame_width-frame_width/2,-wall_thin/2])
+        label("40",orientation="top");
 }
 
 // TOP FRONT RIGHT
-* difference(){
-	rotate([180,0,0]) mirror([1,0,0]) frame_corner(hinge=1);
-	translate([-3*wall,-frame_width-frame_width/2-wall,-wall_thin/2])
-		resize(newsize=[0,2*wall,0],auto=[true,true,false])
-			linear_extrude(height=wall_thin)
-				import("lib/R.dxf");
-}
+* mirror([1,0,0])
+    difference(){
+        rotate([180,0,0])
+            frame_corner(hinge=1);
+        translate([frame_width/2,-frame_width-frame_width/2,-wall_thin/2])
+            mirror([1,0,0]) label("78",orientation="top");
+    }
 
 // TOP BACK 2x
 // BOTTOM 4x
-* rotate([180,0,0]) frame_corner(hinge=0);
+* difference(){
+    rotate([180,0,0])
+        frame_corner(hinge=0);
+	translate([frame_width/2,-frame_width-frame_width/2,-wall_thin/2])
+        label("35",orientation="top");
+}
 
 // MIDDLE FRONT LEFT
 * difference(){
 	frame_corner_middle(hinge=1);
-	translate([-wall_thin/2,4*wall,-wall])
-		rotate([0,0,90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/L.dxf");
+	translate([-wall_thin/2,frame_width/2,0])
+        label("8.",orientation="right");
 }
 
 // MIDDLE FRONT RIGHT
 * difference(){
 	mirror([1,0,0]) frame_corner_middle(hinge=1);
-	translate([wall_thin/2,6*wall,-wall])
-		rotate([0,0,-90])
-			rotate([90,0,0])
-				resize(newsize=[0,2*wall,0],auto=[true,true,false])
-					linear_extrude(height=wall_thin)
-						import("lib/R.dxf");
+	translate([wall_thin/2,frame_width/2,0])
+        label("48",orientation="left");
 }
 
 // MIDDLE BACK 2x
-* frame_corner_middle(hinge=0);
-
-// DOOR HINGE TOP LEFT
 * difference(){
-	rotate([180,0,0]) frame_corner_door_top();
-	translate([4*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
-		rotate([0,0,180])
-			rotate([180,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/T.dxf");
-	translate([2*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
-		rotate([0,0,180])
-			rotate([180,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/L.dxf");
+	frame_corner_middle(hinge=0);
+	translate([-wall_thin/2,frame_width/2,0])
+        label("34",orientation="right");
 }
 
-// DOOR HINGE TOP RIGHT
-* difference(){
-	rotate([180,0,0]) mirror([1,0,0]) frame_corner_door_top();
-	translate([-2*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
-		rotate([0,0,180])
-			rotate([180,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/T.dxf");
-	translate([-4*wall,frame_enclosure_thickness+wall_thin/2+clearance,2*wall])
-		rotate([0,0,180])
-			rotate([180,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/R.dxf");
-}
+// DOOR TOP LEFT
+* rotate([180,0,0])
+    difference(){
+        frame_corner_door_top();
+        translate([frame_width/2,-frame_enclosure_thickness,-frame_width/2])
+            label("60.",orientation="back");
+    }
 
-// DOOR HINGE BOTTOM LEFT
+// DOOR TOP RIGHT
+* rotate([180,0,0]) mirror([1,0,0])
+    difference(){
+        frame_corner_door_top();
+        translate([frame_width/2,-frame_enclosure_thickness,-frame_width/2])
+            mirror([1,0,0]) label("70",orientation="back");
+    }
+
+// DOOR BOTTOM LEFT
 * difference(){
 	frame_corner_door_bottom();
-	translate([4*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
-		rotate([0,0,180])
-			rotate([0,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/B.dxf");
-	translate([2*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
-		rotate([0,0,180])
-			rotate([0,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/L.dxf");
+    translate([frame_width/2,-frame_enclosure_thickness,frame_width/2])
+        label("74",orientation="back");
 }
 
-// DOOR HINGE BOTTOM RIGHT
-* difference(){
-	mirror([1,0,0]) frame_corner_door_bottom();
-	translate([-2*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
-		rotate([0,0,180])
-			rotate([0,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/B.dxf");
-	translate([-4*wall,-(frame_enclosure_thickness+wall_thin/2+clearance),2*wall])
-		rotate([0,0,180])
-			rotate([0,0,0])
-				rotate([90,0,0])
-					resize(newsize=[0,2*wall,0],auto=[true,true,false])
-						linear_extrude(height=wall_thin)
-							import("lib/R.dxf");
-}
+// DOOR BOTTOM RIGHT
+* mirror([1,0,0])
+    difference(){
+        frame_corner_door_bottom();
+        translate([frame_width/2,-frame_enclosure_thickness,frame_width/2])
+            mirror([1,0,0]) label("16",orientation="back");
+    }
 
 
 
