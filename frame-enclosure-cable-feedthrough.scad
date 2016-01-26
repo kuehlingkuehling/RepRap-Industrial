@@ -34,14 +34,6 @@ include <configuration.scad>
             label("275",orientation="front");
     }
 
-// 15 MM
-* rotate([180,0,0])
-    difference(){
-        frame_enclosure_cable_feedthrough(cable_clearance=15);
-        translate([frame_enclosure_cable_feedthrough_body_side/2,frame_enclosure_cable_feedthrough_body_side-wall-wall,-wall-(frame_enclosure_cable_feedthrough_body_height-wall)/2])
-            label("276",orientation="front");
-    }
-
 // 20 MM
 * rotate([180,0,0])
     difference(){
