@@ -23,7 +23,12 @@ include <configuration.scad>
 
 
 // RENDER
-wiper();
+difference(){
+    wiper();
+    translate([0,0,frame_width/4])
+        label("408",orientation="right");
+}
+
 
 
 
