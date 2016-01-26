@@ -20,8 +20,10 @@ License:
 
 include <configuration.scad>
 
-
-
+// DEV
+// bed_siliconeheater_width = 300;
+// bed_heatbed_width = 302;
+// bed_heatbed_length = 212;
 
 
 // RENDER (DXF)
@@ -33,7 +35,7 @@ module bed_siliconeheater(){
 	difference(){
 
 		// main body
-		cube([bed_siliconeheater_side,bed_siliconeheater_side,bed_siliconeheater_thickness],center=true);
+		cube([bed_siliconeheater_width,bed_siliconeheater_length,bed_siliconeheater_thickness],center=true);
 
 		// bed leveling mount glueing clearance
 		for(i=[0:2])
@@ -41,12 +43,12 @@ module bed_siliconeheater(){
 				translate([0,bed_leveling_mount_dia/2+bed_leveling_rod_end_bearing_width/2-z_bed_bolt_radius,0])
 					cylinder(r=bed_leveling_mount_dia/2+wall_thin,h=bed_siliconeheater_thickness+2, center=true);
 
-		// bed leveling bolt rod end bearing screw holes and nut trap
+		// bed corner clearance
 		for(i=[0:1])
 			for(j=[0:1])
 				mirror([i,0,0])
 					mirror([0,j,0])
-						translate([bed_heatbed_side/2-((bed_corner_body_width-wall)+wall_thin),bed_heatbed_side/2-((bed_corner_body_length-wall)+wall_thin),-(bed_siliconeheater_thickness+2)/2])
+						translate([bed_heatbed_width/2-((bed_corner_body_width-wall)+wall_thin),bed_heatbed_length/2-((bed_corner_body_length-wall)+wall_thin),-(bed_siliconeheater_thickness+2)/2])
 							cube([(bed_corner_body_width-wall)+wall_thin+1,(bed_corner_body_length-wall)+wall_thin+1,bed_siliconeheater_thickness+2]);
 	}
 }

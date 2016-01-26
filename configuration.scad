@@ -174,8 +174,11 @@ endstop_magnet_length = 7;
 
 bed_heatbed_thickness = 6.1;		// double faced corrugated aluminum sandwich
 bed_heatbed_side = 212;
+bed_heatbed_width = 212;            // introduced for temporary dev purpose in "bed_siliconeheater.scad" (bed_heatbed_side still in use elsewhere)
+bed_heatbed_length = 212;           // introduced for temporary dev purpose in "bed_siliconeheater.scad" (bed_heatbed_side still in use elsewhere)
 bed_siliconeheater_thickness = 3;
-bed_siliconeheater_side = 210;
+bed_siliconeheater_width = 210;
+bed_siliconeheater_length = 210;
 bed_surface_thickness = 1.5;		// PEI carbon fabric composite
 bed_surface_side = 210;
 bed_clamp_width = 12;				// foldback clamps 25mm, max. clamp width 9mm
